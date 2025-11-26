@@ -46,6 +46,16 @@ body {
   margin-left: 2px;
 }
 
+/* Profile Image */
+.profile-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 main {
   max-width: var(--max-width);
   margin: 0 auto;
