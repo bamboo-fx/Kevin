@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/learnings",
+            "destination": "/learnings.html"
+        },
+        {
+            "source": "/blog",
+            "destination": "/blog.html"
+        },
+        {
+            "source": "/books",
+            "destination": "/books.html"
+        }
+    ]
+}

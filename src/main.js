@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start reveal after a brief moment
     setTimeout(() => {
-        document.body.style.transition = 'opacity 0.6s ease';
+        document.body.style.transition = 'opacity 0.4s ease';
         document.body.style.opacity = '1';
 
         // Scramble the h1 heading
         const h1 = document.querySelector('h1');
         if (h1) {
-            setTimeout(() => scrambleText(h1), 300);
+            setTimeout(() => scrambleText(h1), 150);
         }
 
         // Animate sections with stagger
@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
             section.style.transform = 'translateY(20px)';
 
             setTimeout(() => {
-                section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                 section.style.opacity = '1';
                 section.style.transform = 'translateY(0)';
-            }, 500 + (index * 150));
+            }, 300 + (index * 80));
         });
 
         // Animate profile image with a scale effect
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
             profileImg.style.transform = 'scale(0.8)';
 
             setTimeout(() => {
-                profileImg.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                profileImg.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
                 profileImg.style.opacity = '1';
                 profileImg.style.transform = 'scale(1)';
-            }, 200);
+            }, 100);
         }
-    }, 100);
+    }, 50);
 });
