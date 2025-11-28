@@ -71,4 +71,83 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         }
     }, 50);
+
+    // Infinite looping carousel for books
+    const booksGrid = document.querySelector('.books-grid');
+    if (booksGrid) {
+        const bookCards = Array.from(booksGrid.children);
+
+        // Clone books multiple times for seamless looping
+        const cloneCount = 3;
+        for (let i = 0; i < cloneCount; i++) {
+            bookCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                booksGrid.appendChild(clone);
+            });
+        }
+
+        const baseSpeed = 0.5; // base pixels per frame
+        let currentSpeed = baseSpeed;
+        const maxSpeed = 5; // maximum speed when scrolling
+        const deceleration = 0.05; // how fast it returns to base speed
+
+        // Auto-scroll function - ALWAYS running
+        function autoScroll() {
+            if (booksGrid) {
+                booksGrid.scrollLeft += currentSpeed;
+
+                // Reset scroll position for infinite loop
+                const maxScroll = booksGrid.scrollWidth / (cloneCount + 1);
+                if (booksGrid.scrollLeft >= maxScroll) {
+                    booksGrid.scrollLeft = 0;
+                }
+
+                // Gradually return to base speed
+                if (currentSpeed > baseSpeed) {
+                    currentSpeed = Math.max(baseSpeed, currentSpeed - deceleration);
+                }
+            }
+            requestAnimationFrame(autoScroll);
+        }
+
+        // Start auto-scrolling
+        autoScroll();
+
+        // Wheel scroll to speed up
+        booksGrid.addEventListener('wheel', (e) => {
+            e.preventDefault();
+
+            // Speed up when scrolling right, slow down when scrolling left
+            if (e.deltaY > 0 || e.deltaX > 0) {
+                currentSpeed = Math.min(maxSpeed, currentSpeed + 0.5);
+            } else if (e.deltaY < 0 || e.deltaX < 0) {
+                currentSpeed = Math.max(baseSpeed * 0.2, currentSpeed - 0.3);
+            }
+        }, { passive: false });
+
+        // Touch support for mobile - swipe to speed up
+        let touchStartX;
+        let lastTouchX;
+        let touchVelocity = 0;
+
+        booksGrid.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].pageX;
+            lastTouchX = touchStartX;
+        });
+
+        booksGrid.addEventListener('touchmove', (e) => {
+            const currentX = e.touches[0].pageX;
+            touchVelocity = lastTouchX - currentX;
+            lastTouchX = currentX;
+
+            // Speed up based on swipe velocity
+            if (touchVelocity > 0) {
+                currentSpeed = Math.min(maxSpeed, currentSpeed + Math.abs(touchVelocity) * 0.05);
+            }
+        });
+
+        booksGrid.addEventListener('touchend', () => {
+            // Speed gradually returns to base automatically via autoScroll
+        });
+    }
 });
