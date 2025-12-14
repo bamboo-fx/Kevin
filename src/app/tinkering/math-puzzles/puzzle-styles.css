@@ -1,0 +1,44 @@
+/* Custom styles for Math Puzzles */
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Blinking animation for sudoku cells */
+@keyframes blink-red {
+  0%, 100% { 
+    background-color: #fee2e2; 
+    color: #dc2626; 
+  }
+  50% { 
+    background-color: #fca5a5; 
+    color: #991b1b; 
+  }
+}
+
+.animate-blink-red {
+  animation: blink-red 0.5s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+

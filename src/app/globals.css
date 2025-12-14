@@ -56,6 +56,18 @@
   --color-link-hover: #c45c3e;
   --color-profile-border: #e5e2db;
 
+  /* Math Puzzles colors */
+  --color-puzzle-paper: #fdf6e3;
+  --color-puzzle-ink: #2b2b2b;
+  --color-puzzle-brownie: #5D4037;
+  --color-puzzle-brownie-dark: #3E2723;
+  
+  /* Shorthand aliases for puzzle games */
+  --color-paper: #fdf6e3;
+  --color-ink: #2b2b2b;
+  --color-brownie: #5D4037;
+  --color-brownie-dark: #3E2723;
+
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 

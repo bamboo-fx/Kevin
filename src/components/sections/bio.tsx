@@ -2,7 +2,7 @@
 
 const bioItems = [
   {
-    text: "Previously tinkering apps at",
+    text: "Previously vibecoding apps at",
     links: [
       { label: "VibeCode", href: "https://www.vibecodeapp.com/" }
     ],

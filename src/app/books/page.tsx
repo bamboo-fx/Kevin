@@ -1,41 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Quote } from "lucide-react";
+import { ArrowLeft, Quote, BookOpen } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
-const books = [
-  {
-    title: "Mathematics for Human Flourishing",
-    author: "Francis Su",
-    quotes: [
-      "The skills society needs from math may change, but the virtues needed from math will not.",
-      "Exploration stimulates the virtue of creativity.",
-      "Even wrong ideas soften the soil in which good ideas can grow.",
-      "Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.",
-      "Mathematics is the science of patterns and the art of engaging the meaning of those patterns."
-    ]
-  },
-  {
-    title: "Relentless",
-    author: "Tim Grover",
-    quotes: [
-      "Being relentless means demanding more of yourself than anyone else could ever demand of you, knowing that every time you stop, you can still do more. You must do more.",
-      "In order to have what you really want, you must first be who you really are.",
-      "Don't tell me the glass is half-full or half-empty; you either have something in that glass or you don't.",
-      "When you're an A+ person, you want A+ people around you, and everyone has to be accountable for doing A+ work."
-    ]
-  },
-  {
-    title: "W1nning",
-    author: "Tim Grover",
-    quotes: [
-      "Time tells you what you didn't accomplish. Focus turns off the clock and directs all your energy to the result.",
-      "Control your thoughts, and you control your emotions. Control your emotions, and you control your actions. Control your actions, and you control the outcome.",
-      "Winners don't fear reality, they don't hide from the truth, and they're not afraid to confront their own flaws and weaknesses."
-    ]
-  }
-];
+const headStartBook = {
+  title: "Mathematics for Human Flourishing",
+  author: "Francis Su",
+  quotes: [
+    "The skills society needs from math may change, but the virtues needed from math will not.",
+    "Exploration stimulates the virtue of creativity.",
+    "Even wrong ideas soften the soil in which good ideas can grow.",
+    "Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.",
+    "Mathematics is the science of patterns and the art of engaging the meaning of those patterns."
+  ]
+};
+
+function BookCard({ book }: { book: { title: string; author: string; quotes: string[] } }) {
+  return (
+    <div className="bg-[#fffdf5] border border-[#e8e0c8] rounded p-3 shadow-sm hover:shadow-md transition-all duration-300 ease-out relative group">
+      <div className="absolute top-2 right-2 opacity-30 group-hover:opacity-50 transition-opacity">
+        <Quote className="w-3.5 h-3.5 text-[#c45c3e]" />
+      </div>
+      
+      <div className="mb-2 pr-5">
+        <h2 
+          className="text-sm font-medium text-[#1a1a1a] mb-0.5 leading-tight" 
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          {book.title}
+        </h2>
+        <p 
+          className="text-[#9a9a9a] text-[10px]"
+          style={{ fontFamily: "var(--font-sans)" }}
+        >
+          {book.author}
+        </p>
+      </div>
+
+      <div className="space-y-1.5">
+        {book.quotes.map((quote, quoteIdx) => (
+          <div
+            key={quoteIdx}
+            className="border-l-2 border-[#c45c3e]/20 pl-2"
+          >
+            <p 
+              className="text-[#5a5a5a] text-xs leading-snug"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              "{quote}"
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function BooksPage() {
   return (
@@ -73,12 +93,51 @@ export default function BooksPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {books.map((book, idx) => (
-              <div
-                key={idx}
-                className="bg-[#fffdf5] border border-[#e8e0c8] rounded p-3 shadow-sm hover:shadow-md transition-all duration-300 ease-out relative group"
-              >
+          {/* 2026 Reading Challenge */}
+          <div className="mb-10 p-6 bg-white border border-[#e5e2db] rounded-lg">
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-[#c45c3e]/10 rounded-lg">
+                <BookOpen className="w-6 h-6 text-[#c45c3e]" />
+              </div>
+              <div>
+                <h2 
+                  className="text-2xl font-medium text-[#1a1a1a] mb-1" 
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  2026 Reading Challenge
+                </h2>
+                <p 
+                  className="text-base text-[#6b6b6b] mb-2"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  Read 1 book per month
+                </p>
+                <p 
+                  className="text-sm text-[#9a9a9a]"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  ~10 pages per day → ~300 pages per month → 12 books in 2026
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Head Start Section */}
+          <div className="mb-8">
+            <p 
+              className="text-xl font-bold text-[#1a1a1a] mb-2"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              December 2025
+            </p>
+            <p 
+              className="text-sm font-bold text-[#1a1a1a] mb-3"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              (Got a head start)
+            </p>
+            <div className="max-w-sm">
+              <div className="bg-[#fffdf5] border border-[#e8e0c8] rounded p-3 shadow-sm hover:shadow-md transition-all duration-300 ease-out relative group">
                 <div className="absolute top-2 right-2 opacity-30 group-hover:opacity-50 transition-opacity">
                   <Quote className="w-3.5 h-3.5 text-[#c45c3e]" />
                 </div>
@@ -88,18 +147,18 @@ export default function BooksPage() {
                     className="text-sm font-medium text-[#1a1a1a] mb-0.5 leading-tight" 
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
-                    {book.title}
+                    {headStartBook.title}
                   </h2>
                   <p 
                     className="text-[#9a9a9a] text-[10px]"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
-                    {book.author}
+                    {headStartBook.author}
                   </p>
                 </div>
 
                 <div className="space-y-1.5">
-                  {book.quotes.map((quote, quoteIdx) => (
+                  {headStartBook.quotes.map((quote, quoteIdx) => (
                     <div
                       key={quoteIdx}
                       className="border-l-2 border-[#c45c3e]/20 pl-2"
@@ -114,7 +173,7 @@ export default function BooksPage() {
                   ))}
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </main>
       </div>

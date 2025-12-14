@@ -20,12 +20,12 @@ function XIcon({ className }: { className?: string }) {
 }
 
 const socials = [
-  {
-    label: "X",
-    href: "https://x.com/bamboo_farmer",
-    icon: XIcon,
-    hoverColor: "#000000"
-  },
+  // {
+  //   label: "X",
+  //   href: "https://x.com/bamboo_farmer",
+  //   icon: XIcon,
+  //   hoverColor: "#000000"
+  // },
   {
     label: "Instagram",
     href: "https://www.instagram.com/kev_xia/",

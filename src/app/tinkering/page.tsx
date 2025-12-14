@@ -1,39 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Code } from "lucide-react";
+import { ArrowLeft, Code, BookOpen, ExternalLink } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  date: string;
+  link?: string;
+}
+
+const projects: Project[] = [
   {
-    title: "Real-time Collaborative Editor",
-    description: "Built a multiplayer code editor with WebSockets, operational transforms, and live cursor tracking. Used React, Node.js, and MongoDB.",
-    tags: ["TypeScript", "WebSockets", "React", "MongoDB"],
-    date: "Nov 2024"
-  },
-  {
-    title: "AI-Powered Recipe Generator",
-    description: "Created an app that generates recipes from ingredient photos using GPT-4 Vision. Integrated with Supabase for storage and Stripe for subscriptions.",
-    tags: ["Next.js", "OpenAI", "Supabase", "Stripe"],
-    date: "Oct 2024"
-  },
-  {
-    title: "Music Visualizer Dashboard",
-    description: "Interactive audio visualization tool using Web Audio API and Three.js. Features real-time FFT analysis and customizable visual effects.",
-    tags: ["Three.js", "Web Audio API", "Canvas", "React"],
-    date: "Sep 2024"
-  },
-  {
-    title: "Distributed Task Queue",
-    description: "Built a scalable task processing system with Redis pub/sub, worker pools, and exponential backoff. Handles 10k+ tasks per minute.",
-    tags: ["Python", "Redis", "Docker", "FastAPI"],
-    date: "Aug 2024"
-  },
-  {
-    title: "Browser Extension for Productivity",
-    description: "Chrome extension that blocks distracting websites and tracks time spent on different domains. Features Pomodoro timer and analytics.",
-    tags: ["JavaScript", "Chrome API", "IndexedDB"],
-    date: "Jul 2024"
+    title: "Math Puzzles",
+    description: "Interactive collection of mathematical puzzles from 'Mathematics for Human Flourishing'. Features 7 games including Sudoku variants, geometry challenges, and logic puzzles with beautiful animations.",
+    tags: ["Next.js", "React", "Framer Motion", "TypeScript"],
+    date: "Dec 2025",
+    link: "/tinkering/math-puzzles"
   }
 ];
 
@@ -69,57 +54,124 @@ export default function TinkeringPage() {
             className="text-lg text-[#6b6b6b] leading-relaxed"
             style={{ fontFamily: "var(--font-sans)" }}
           >
-            Side projects and experiments I build when I'm in the zone
+            Protoptyping, vibecoding, exploring AI tools and building
           </p>
         </div>
 
         <div className="space-y-6">
-          {projects.map((project, idx) => (
-            <div
-              key={idx}
-              className="bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 ease-out group"
-              style={{
+          {projects.map((project, idx) => {
+            const commonProps = {
+              className: `block bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 ease-out group ${project.link ? 'cursor-pointer' : ''}`,
+              style: {
                 animation: `fadeInUp 0.4s ease-out ${idx * 0.1}s both`
-              }}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <Code className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
-                  <h2 
-                    className="text-xl font-medium text-[#1a1a1a]" 
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    {project.title}
-                  </h2>
-                </div>
-                <span 
-                  className="text-xs text-[#9a9a9a] tracking-wide"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  {project.date}
-                </span>
-              </div>
-              
-              <p 
-                className="text-[#6b6b6b] leading-relaxed mb-4"
-                style={{ fontFamily: "var(--font-sans)" }}
+              }
+            };
+            
+            return project.link ? (
+              <Link
+                key={idx}                {...commonProps}
+                href={project.link}
               >
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, tagIdx) => (
-                  <span
-                    key={tagIdx}
-                    className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    {project.link ? (
+                      <BookOpen className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
+                    ) : (
+                      <Code className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
+                    )}
+                    <h2 
+                      className="text-xl font-medium text-[#1a1a1a]" 
+                      style={{ fontFamily: "var(--font-serif)" }}
+                    >
+                      {project.title}
+                    </h2>
+                    {project.link && (
+                      <ExternalLink className="w-4 h-4 text-[#9a9a9a] group-hover:text-[#c45c3e] transition-colors" />
+                    )}
+                  </div>
+                  <span 
+                    className="text-xs text-[#9a9a9a] tracking-wide"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
-                    {tag}
+                    {project.date}
                   </span>
-                ))}
+                </div>
+                
+                <p 
+                  className="text-[#6b6b6b] leading-relaxed mb-4"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, tagIdx) => (
+                    <span
+                      key={tagIdx}
+                      className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ) : (
+              <div key={idx} {...commonProps}>
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <Code className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
+                    <h2 
+                      className="text-xl font-medium text-[#1a1a1a]" 
+                      style={{ fontFamily: "var(--font-serif)" }}
+                    >
+                      {project.title}
+                    </h2>
+                  </div>
+                  <span 
+                    className="text-xs text-[#9a9a9a] tracking-wide"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {project.date}
+                  </span>
+                </div>
+                
+                <p 
+                  className="text-[#6b6b6b] leading-relaxed mb-4"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, tagIdx) => (
+                    <span
+                      key={tagIdx}
+                      className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
+          
+          {/* Updating, more coming soon */}
+          <div
+            className="bg-white/50 border-2 border-dashed border-[#e5e5e5] rounded-lg p-6 text-center"
+            style={{
+              animation: `fadeInUp 0.4s ease-out ${projects.length * 0.1}s both`
+            }}
+          >
+            <p 
+              className="text-[#9a9a9a] text-sm"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Updating, more coming soon
+            </p>
+          </div>
         </div>
       </main>
     </div>

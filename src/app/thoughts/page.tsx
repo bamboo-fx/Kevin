@@ -1,36 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { ArrowLeft, Sparkles } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
-
-const thoughts = [
-  {
-    title: "On Building in Public",
-    date: "Dec 2024",
-    content: "There's something magical about sharing your journey as you build. The feedback loop, the accountability, the connections you make - it all compounds. Sure, it's scary to show unfinished work, but that's where the real growth happens. Every feature you ship, every bug you fix, every lesson you learn becomes part of a larger story that others can learn from."
-  },
-  {
-    title: "The Joy of Breaking Things",
-    date: "Nov 2024",
-    content: "My best learning moments came from breaking things spectacularly. Crashed production? Learned about proper deployment strategies. Infinite loop that hung the browser? Understood recursion deeply. Lost data? Now I'm obsessed with backups. Each failure is a masterclass disguised as a disaster. Embrace the breaks."
-  },
-  {
-    title: "Why Small Projects Matter",
-    date: "Oct 2024",
-    content: "Not everything needs to be a unicorn startup. Sometimes the best projects are the tiny tools that solve your own annoying problems. That script that saves you 10 minutes a day. That Chrome extension for your workflow. These 'toy' projects teach you more than any tutorial because you're solving real problems for real users (yourself)."
-  },
-  {
-    title: "The Myth of Perfect Code",
-    date: "Sep 2024",
-    content: "I used to obsess over writing perfect code. Every variable name agonized over, every function meticulously crafted. Then I realized: shipped code beats perfect code every time. You learn more from one messy project in production than ten perfect projects in your local environment. Perfectionism is just fear wearing a fancy hat."
-  },
-  {
-    title: "On Learning New Tech",
-    date: "Aug 2024",
-    content: "The tech landscape moves fast, and that's okay. You don't need to learn every new framework that drops. Instead, focus on fundamentals: how does the web work? What makes good software? Master one stack deeply, then branch out when you hit real limitations. Depth beats breadth, especially early on."
-  }
-];
+import { motion } from "framer-motion";
 
 export default function ThoughtsPage() {
   return (
@@ -68,40 +41,55 @@ export default function ThoughtsPage() {
           </p>
         </div>
 
-        <div className="space-y-8">
-          {thoughts.map((thought, idx) => (
-            <article
-              key={idx}
-              className="bg-white/50 border border-[#e5e5e5] rounded-lg p-8 hover:border-[#4a7c59]/30 hover:shadow-lg transition-all duration-300 ease-out group"
-              style={{
-                animation: `fadeInUp 0.4s ease-out ${idx * 0.1}s both`
-              }}
+        {/* Coming Soon Design */}
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-md"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#4a7c59]/10 to-[#c45c3e]/10 mb-8 relative"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <MessageCircle className="w-5 h-5 text-[#4a7c59] group-hover:scale-110 transition-transform duration-300" />
-                <h2 
-                  className="text-2xl font-light text-[#1a1a1a]" 
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  {thought.title}
-                </h2>
-              </div>
-              
-              <span 
-                className="text-xs text-[#9a9a9a] tracking-wide mb-4 block"
-                style={{ fontFamily: "var(--font-sans)" }}
-              >
-                {thought.date}
-              </span>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#4a7c59]/20 border-r-[#c45c3e]/20"
+              />
+              <Sparkles className="w-8 h-8 text-[#4a7c59]/40" />
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-3xl font-light text-[#1a1a1a] mb-4"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Updating
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-[#6b6b6b] text-lg"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Coming soon
+            </motion.p>
 
-              <p 
-                className="text-[#4a4a4a] leading-relaxed text-base"
-                style={{ fontFamily: "var(--font-sans)" }}
-              >
-                {thought.content}
-              </p>
-            </article>
-          ))}
+            <motion.div
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "100%" }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="mt-8 h-px bg-gradient-to-r from-transparent via-[#e5e5e5] to-transparent"
+            />
+          </motion.div>
         </div>
       </main>
     </div>
