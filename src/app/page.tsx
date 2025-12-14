@@ -3,8 +3,6 @@
 import { Header } from "@/components/sections/header";
 import { Intro } from "@/components/sections/intro";
 import { Bio } from "@/components/sections/bio";
-import { Interests } from "@/components/sections/interests";
-import { SocialLinks } from "@/components/sections/social-links";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -19,8 +17,6 @@ export default function Home() {
         <Header />
         <Intro />
         <Bio />
-        <Interests />
-        <SocialLinks />
         <Footer />
       </main>
     </div>

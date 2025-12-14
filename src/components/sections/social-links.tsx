@@ -2,39 +2,48 @@
 
 import { useState, useEffect } from "react";
 import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
+import { useTransition } from "@/contexts/transition-context";
 
 const socials = [
   {
     label: "Twitter",
     href: "https://x.com/bamboo_farmer",
     icon: Twitter,
-    hoverColor: "hover:text-[#1DA1F2] hover:border-[#1DA1F2]/30"
+    hoverColor: "#1DA1F2"
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/kev_xia/",
     icon: Instagram,
-    hoverColor: "hover:text-[#E4405F] hover:border-[#E4405F]/30"
+    hoverColor: "#E4405F"
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/kevin-xia22",
     icon: Linkedin,
-    hoverColor: "hover:text-[#0A66C2] hover:border-[#0A66C2]/30"
+    hoverColor: "#0A66C2"
   },
   {
     label: "GitHub",
     href: "https://github.com/bamboo-fx",
     icon: Github,
-    hoverColor: "hover:text-[#333] hover:border-[#333]/30"
+    hoverColor: "#333"
   }
 ];
 
 export function SocialLinks() {
+  const { isInitialLoad } = useTransition();
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [showTitle, setShowTitle] = useState(false);
 
   useEffect(() => {
+    if (!isInitialLoad) {
+      // Show all items immediately if not initial load
+      setShowTitle(true);
+      setVisibleItems(socials.map((_, index) => index));
+      return;
+    }
+
     const titleDelay = 3200;
     const itemDelay = 3400;
     const stagger = 80;
@@ -46,19 +55,19 @@ export function SocialLinks() {
         setVisibleItems(prev => [...prev, index]);
       }, itemDelay + index * stagger);
     });
-  }, []);
+  }, [isInitialLoad]);
 
   return (
-    <section className="w-full max-w-2xl mx-auto px-6 py-8">
+    <section className="w-full px-6 pb-2">
       <h2
-        className={`text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium text-center transition-all duration-300 ${
+        className={`text-xs uppercase tracking-[0.2em] text-[#9a9a9a] mb-3 font-medium text-center transition-all duration-300 ${
           showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
         }`}
         style={{ fontFamily: "var(--font-sans)" }}
       >
         Connect
       </h2>
-      <nav className="flex flex-wrap items-center justify-center gap-3">
+      <nav className="flex items-center justify-center gap-4">
         {socials.map((social, idx) => {
           const Icon = social.icon;
           return (
@@ -67,12 +76,40 @@ export function SocialLinks() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#e5e2db] bg-white text-[#6b6b6b] transition-all duration-300 ${social.hoverColor} hover:shadow-md hover:-translate-y-0.5 ${
-                visibleItems.includes(idx) ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+              className={`group flex flex-col items-center gap-1.5 transition-all duration-200 ease-out ${
+                visibleItems.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
             >
-              <Icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-              <span className="text-sm font-medium" style={{ fontFamily: "var(--font-sans)" }}>
+              <div 
+                className="p-2 border bg-white transition-all duration-200"
+                style={{
+                  borderColor: '#e5e2db',
+                  color: '#6b6b6b'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = social.hoverColor;
+                  e.currentTarget.style.color = social.hoverColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#e5e2db';
+                  e.currentTarget.style.color = '#6b6b6b';
+                }}
+              >
+                <Icon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:scale-105" />
+              </div>
+              <span 
+                className="text-[10px] font-medium tracking-wide transition-colors duration-200" 
+                style={{ 
+                  fontFamily: "var(--font-sans)",
+                  color: '#6b6b6b'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = social.hoverColor;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#6b6b6b';
+                }}
+              >
                 {social.label}
               </span>
             </a>

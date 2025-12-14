@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTransition } from "@/contexts/transition-context";
 
 const bioItems = [
   {
-    text: "Previously vibecoding apps at",
+    text: "Previously tinkering apps at",
     links: [
       { label: "VibeCode", href: "https://www.vibecodeapp.com/" }
     ],
@@ -31,9 +32,16 @@ const bioItems = [
 ];
 
 export function Bio() {
+  const { isInitialLoad } = useTransition();
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
 
   useEffect(() => {
+    if (!isInitialLoad) {
+      // Show all items immediately if not initial load
+      setVisibleItems(bioItems.map((_, index) => index));
+      return;
+    }
+
     const delay = 2000;
     const stagger = 150;
 
@@ -42,7 +50,7 @@ export function Bio() {
         setVisibleItems(prev => [...prev, index]);
       }, delay + index * stagger);
     });
-  }, []);
+  }, [isInitialLoad]);
 
   return (
     <section className="w-full max-w-2xl mx-auto px-6 py-4">
@@ -50,7 +58,7 @@ export function Bio() {
         {bioItems.map((item, index) => (
           <div
             key={index}
-            className={`group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ${
+            className={`group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out ${
               visibleItems.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
             }`}
           >

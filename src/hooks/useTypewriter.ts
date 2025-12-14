@@ -2,11 +2,17 @@
 
 import { useState, useEffect } from "react";
 
-export function useTypewriter(text: string, speed: number = 30, delay: number = 0) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
+export function useTypewriter(text: string, speed: number = 30, delay: number = 0, skip: boolean = false) {
+  const [displayedText, setDisplayedText] = useState(skip ? text : "");
+  const [isComplete, setIsComplete] = useState(skip);
 
   useEffect(() => {
+    if (skip) {
+      setDisplayedText(text);
+      setIsComplete(true);
+      return;
+    }
+
     let currentIndex = 0;
     let timeoutId: NodeJS.Timeout;
 
@@ -28,7 +34,7 @@ export function useTypewriter(text: string, speed: number = 30, delay: number = 
       clearTimeout(startTimeout);
       clearTimeout(timeoutId);
     };
-  }, [text, speed, delay]);
+  }, [text, speed, delay, skip]);
 
   return { displayedText, isComplete };
 }

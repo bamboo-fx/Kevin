@@ -2,12 +2,15 @@
 
 import Link from "next/link";
 import { useTypewriter } from "@/hooks/useTypewriter";
+import { useTransition } from "@/contexts/transition-context";
 
 export function Intro() {
+  const { isInitialLoad } = useTransition();
   const { displayedText, isComplete } = useTypewriter(
     "I study CS + Math @ Harvey Mudd.",
     40,
-    1000
+    1000,
+    !isInitialLoad
   );
 
   return (
@@ -17,7 +20,7 @@ export function Intro() {
           if (word === "CS" || word === "Math") {
             return (
               <span key={idx}>
-                <span className="text-[#1a1a1a]">{word}</span>{" "}
+                <span>{word}</span>{" "}
               </span>
             );
           }
@@ -30,7 +33,7 @@ export function Intro() {
           <>
             <Link
               href="/learnings"
-              className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-300"
+              className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-200 ease-out"
             >
               Harvey Mudd
             </Link>.{" "}

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowLeft, Quote } from "lucide-react";
+import { PageTransition } from "@/components/page-transition";
 
 const books = [
   {
@@ -20,7 +20,8 @@ const books = [
 
 export default function BooksPage() {
   return (
-    <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
+    <PageTransition>
+      <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#f0eeea] via-[#faf9f7] to-[#faf9f7] pointer-events-none" />
       
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -53,42 +54,43 @@ export default function BooksPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {books.map((book, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-br from-[#fff9e6] via-[#fffef5] to-[#fff9e6] border-2 border-[#e5d4a3] rounded-sm p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer relative group hover:-translate-y-2"
+              className="bg-gradient-to-br from-[#fff9e6] via-[#fffef5] to-[#fff9e6] border-2 border-[#e5d4a3] rounded-sm p-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,0.15)] transition-all duration-300 ease-out cursor-pointer relative group hover:-translate-y-1"
               style={{ 
                 transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
+                animation: `fadeInUp 0.4s ease-out ${idx * 0.1}s both`
               }}
             >
-              <div className="absolute top-3 right-3 opacity-40 group-hover:opacity-60 transition-opacity">
-                <Quote className="w-5 h-5 text-[#c45c3e]" />
+              <div className="absolute top-2 right-2 opacity-40 group-hover:opacity-60 transition-opacity">
+                <Quote className="w-3.5 h-3.5 text-[#c45c3e]" />
               </div>
               
-              <div className="mb-4">
+              <div className="mb-2 pr-6">
                 <h2 
-                  className="text-lg font-medium text-[#1a1a1a] mb-1 leading-tight" 
+                  className="text-sm font-medium text-[#1a1a1a] mb-0.5 leading-tight" 
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {book.title}
                 </h2>
                 <p 
-                  className="text-[#9a9a9a] text-xs tracking-wide"
+                  className="text-[#9a9a9a] text-[10px] tracking-wide"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
                   {book.author}
                 </p>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {book.quotes.map((quote, quoteIdx) => (
                   <div
                     key={quoteIdx}
-                    className="border-l-2 border-[#c45c3e]/30 pl-2"
+                    className="border-l-2 border-[#c45c3e]/30 pl-1.5"
                   >
                     <p 
-                      className="text-[#4a4a4a] text-sm leading-snug"
+                      className="text-[#4a4a4a] text-xs leading-snug"
                       style={{ fontFamily: "var(--font-sans)" }}
                     >
                       "{quote}"
@@ -101,5 +103,6 @@ export default function BooksPage() {
         </div>
       </main>
     </div>
+    </PageTransition>
   );
 }

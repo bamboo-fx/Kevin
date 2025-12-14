@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, MessageCircle } from "lucide-react";
+import { PageTransition } from "@/components/page-transition";
 
 const thoughts = [
   {
@@ -33,7 +34,8 @@ const thoughts = [
 
 export default function ThoughtsPage() {
   return (
-    <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
+    <PageTransition>
+      <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#f0eeea] via-[#faf9f7] to-[#faf9f7] pointer-events-none" />
       
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -70,7 +72,10 @@ export default function ThoughtsPage() {
           {thoughts.map((thought, idx) => (
             <article
               key={idx}
-              className="bg-white/50 border border-[#e5e5e5] rounded-lg p-8 hover:border-[#4a7c59]/30 hover:shadow-lg transition-all duration-300 group"
+              className="bg-white/50 border border-[#e5e5e5] rounded-lg p-8 hover:border-[#4a7c59]/30 hover:shadow-lg transition-all duration-300 ease-out group"
+              style={{
+                animation: `fadeInUp 0.4s ease-out ${idx * 0.1}s both`
+              }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <MessageCircle className="w-5 h-5 text-[#4a7c59] group-hover:scale-110 transition-transform duration-300" />
@@ -100,5 +105,6 @@ export default function ThoughtsPage() {
         </div>
       </main>
     </div>
+    </PageTransition>
   );
 }
