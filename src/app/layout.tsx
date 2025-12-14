@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
 import { TransitionProvider } from "@/contexts/transition-context";
-import { BodyTransition } from "@/components/body-transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kevin Xia | CS + Math @ Harvey Mudd",
+  title: "Kevin Xia",
   description: "Personal portfolio of Kevin Xia - CS + Math student at Harvey Mudd, builder, and creator.",
 };
 
@@ -31,7 +30,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TransitionProvider>
-          <BodyTransition />
           {children}
         </TransitionProvider>
         <VisualEditsMessenger />

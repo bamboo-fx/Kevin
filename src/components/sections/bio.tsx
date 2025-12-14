@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useTransition } from "@/contexts/transition-context";
-
 const bioItems = [
   {
     text: "Previously tinkering apps at",
@@ -32,35 +29,13 @@ const bioItems = [
 ];
 
 export function Bio() {
-  const { isInitialLoad } = useTransition();
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (!isInitialLoad) {
-      // Show all items immediately if not initial load
-      setVisibleItems(bioItems.map((_, index) => index));
-      return;
-    }
-
-    const delay = 2000;
-    const stagger = 150;
-
-    bioItems.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleItems(prev => [...prev, index]);
-      }, delay + index * stagger);
-    });
-  }, [isInitialLoad]);
-
   return (
     <section className="w-full max-w-2xl mx-auto px-6 py-4">
       <div className="space-y-4">
         {bioItems.map((item, index) => (
           <div
             key={index}
-            className={`group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out ${
-              visibleItems.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-            }`}
+            className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out"
           >
             <p className="text-[17px] leading-relaxed text-[#6b6b6b]" style={{ fontFamily: "var(--font-sans)" }}>
               {item.text}{" "}

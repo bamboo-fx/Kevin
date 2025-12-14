@@ -4,6 +4,7 @@ import { Header } from "@/components/sections/header";
 import { Intro } from "@/components/sections/intro";
 import { Bio } from "@/components/sections/bio";
 import { Footer } from "@/components/sections/footer";
+import { HomeContent } from "@/components/home-content";
 
 export default function Home() {
   return (
@@ -14,10 +15,12 @@ export default function Home() {
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
       
       <main className="relative z-10 flex flex-col items-center">
-        <Header />
-        <Intro />
-        <Bio />
-        <Footer />
+        <HomeContent>
+          <Header />
+          <Intro />
+          <Bio />
+          <Footer />
+        </HomeContent>
       </main>
     </div>
   );

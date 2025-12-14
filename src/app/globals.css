@@ -143,12 +143,6 @@
     line-height: 1.7;
   }
 
-  body:not(.has-loaded) {
-    opacity: 0;
-    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-delay: 0.1s;
-  }
-
   h1, h2, h3 {
     font-family: var(--font-serif);
     color: var(--color-text-primary);

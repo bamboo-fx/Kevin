@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useTypewriter } from "@/hooks/useTypewriter";
-import { useTransition } from "@/contexts/transition-context";
-import { useState, useEffect } from "react";
-import { Instagram, Linkedin, Github, Mail } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Instagram, Linkedin, Github, Mail, BookOpen, Lightbulb, Code } from "lucide-react";
 
 // Custom X.com icon component
 function XIcon({ className }: { className?: string }) {
@@ -19,9 +18,6 @@ function XIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BookOpen, Lightbulb, Code } from "lucide-react";
 
 const socials = [
   {
@@ -75,38 +71,13 @@ const sections = [
 ];
 
 export function Header() {
-  const { isInitialLoad } = useTransition();
   const pathname = usePathname();
-  const { displayedText, isComplete } = useTypewriter("Kevin Xia", 100, 0, !isInitialLoad);
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
-  const [tabsVisible, setTabsVisible] = useState(false);
-
-  useEffect(() => {
-    if (!isInitialLoad) {
-      setVisibleItems(socials.map((_, index) => index));
-      setTabsVisible(true);
-      return;
-    }
-
-    const delay = 2000;
-    const stagger = 80;
-    const tabsDelay = 1800;
-
-    setTimeout(() => setTabsVisible(true), tabsDelay);
-
-    socials.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleItems(prev => [...prev, index]);
-      }, delay + index * stagger);
-    });
-  }, [isInitialLoad]);
 
   return (
     <header className="w-full max-w-2xl mx-auto flex flex-col items-center pt-12 pb-8">
       <div className="relative mb-6 group">
         <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#c45c3e]/20 via-transparent to-[#4a7c59]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="relative">
-          <div className="absolute inset-0 rounded-full animate-pulse-ring bg-[#c45c3e]/10" style={{ animationDuration: '3s' }} />
           <Image
             src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/df71bbd5-005b-41eb-b943-ebe2131d758c-kevinxia-xyz/assets/images/profile-CdwEI0Qm-1.png"
             alt="Kevin Xia"
@@ -120,21 +91,17 @@ export function Header() {
       </div>
 
       <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-normal tracking-tight mb-3 min-h-[3.5rem]" style={{ fontFamily: "var(--font-serif)" }}>
-          {displayedText}
-          {!isComplete && <span className="animate-pulse">|</span>}
+        <h1 className="text-4xl md:text-5xl font-normal tracking-tight mb-3" style={{ fontFamily: "var(--font-serif)" }}>
+          Kevin Xia
         </h1>
-        <div
-          className="h-[2px] bg-gradient-to-r from-transparent via-[#c45c3e] to-transparent mx-auto transition-all duration-500 ease-out mb-4"
-          style={{ width: isComplete ? "3rem" : "0" }}
-        />
+        <div className="h-[2px] w-12 bg-gradient-to-r from-transparent via-[#c45c3e] to-transparent mx-auto mb-4" />
       </div>
       
       {/* Section Tabs and Social Links - Same line */}
       <div className="w-full max-w-2xl mx-auto px-6 flex items-center justify-between mt-4">
-        {/* Section Tabs - Left, aligned with intro text */}
+        {/* Section Tabs - Left */}
         <nav className="flex items-center gap-2">
-          {sections.map((section, idx) => {
+          {sections.map((section) => {
             const Icon = section.icon;
             const isActive = pathname === section.href;
             
@@ -143,8 +110,6 @@ export function Header() {
                 key={section.label}
                 href={section.href}
                 className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ease-out border border-[#e5e2db] bg-white ${
-                  tabsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                } ${
                   isActive
                     ? 'bg-[#c45c3e]/10 text-[#c45c3e] border-[#c45c3e]/30'
                     : 'text-[#6b6b6b] hover:text-[#1a1a1a] hover:bg-white hover:border-[#c45c3e]/20'
@@ -161,8 +126,8 @@ export function Header() {
         </nav>
 
         {/* Social Links - Right */}
-        <nav className="flex items-center gap-3">
-          {socials.map((social, idx) => {
+        <nav className="flex items-center gap-2">
+          {socials.map((social) => {
             const Icon = social.icon;
             return (
               <a
@@ -170,9 +135,7 @@ export function Header() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group transition-all duration-200 ease-out ${
-                  visibleItems.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                }`}
+                className="group"
                 aria-label={social.label}
               >
                 <div 
