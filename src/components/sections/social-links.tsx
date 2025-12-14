@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
 
 const socials = [
@@ -30,69 +30,56 @@ const socials = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.7
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      ease: [0.4, 0, 0.2, 1]
-    }
-  }
-};
-
 export function SocialLinks() {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [showTitle, setShowTitle] = useState(false);
+
+  useEffect(() => {
+    const titleDelay = 3200;
+    const itemDelay = 3400;
+    const stagger = 80;
+
+    setTimeout(() => setShowTitle(true), titleDelay);
+
+    socials.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleItems(prev => [...prev, index]);
+      }, itemDelay + index * stagger);
+    });
+  }, []);
+
   return (
-    <motion.section
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="w-full max-w-2xl mx-auto px-6 py-8"
-    >
-      <motion.h2
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.65 }}
-        className="text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium text-center"
+    <section className="w-full max-w-2xl mx-auto px-6 py-8">
+      <h2
+        className={`text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium text-center transition-all duration-300 ${
+          showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+        }`}
         style={{ fontFamily: "var(--font-sans)" }}
       >
         Connect
-      </motion.h2>
+      </h2>
       <nav className="flex flex-wrap items-center justify-center gap-3">
-        {socials.map((social) => {
+        {socials.map((social, idx) => {
           const Icon = social.icon;
           return (
-            <motion.a
+            <a
               key={social.label}
-              variants={itemVariants}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#e5e2db] bg-white text-[#6b6b6b] transition-all duration-300 ${social.hoverColor} hover:shadow-md`}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
+              className={`group flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#e5e2db] bg-white text-[#6b6b6b] transition-all duration-300 ${social.hoverColor} hover:shadow-md hover:-translate-y-0.5 ${
+                visibleItems.includes(idx) ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+              }`}
             >
               <Icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
               <span className="text-sm font-medium" style={{ fontFamily: "var(--font-sans)" }}>
                 {social.label}
               </span>
-            </motion.a>
+            </a>
           );
         })}
       </nav>
-    </motion.section>
+    </section>
   );
 }
 

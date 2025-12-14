@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowUpRight, BookOpen, Lightbulb } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowUpRight, BookOpen, Lightbulb, Code } from "lucide-react";
 
 const interests = [
   {
     label: "Thoughts",
-    href: "/blog",
+    href: "/thoughts",
     description: "Ideas, reflections & learnings",
     icon: Lightbulb,
     gradient: "from-[#c45c3e]/10 to-[#d4a03a]/10"
@@ -18,54 +18,54 @@ const interests = [
     description: "What I'm reading",
     icon: BookOpen,
     gradient: "from-[#4a7c59]/10 to-[#3d5a80]/10"
+  },
+  {
+    label: "Vibecoding",
+    href: "/vibecoding",
+    description: "Projects & experiments",
+    icon: Code,
+    gradient: "from-[#8b5cf6]/10 to-[#6366f1]/10"
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.6
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.4, 0, 0.2, 1]
-    }
-  }
-};
-
 export function Interests() {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [showTitle, setShowTitle] = useState(false);
+
+  useEffect(() => {
+    const titleDelay = 2500;
+    const cardDelay = 2700;
+    const stagger = 120;
+
+    setTimeout(() => setShowTitle(true), titleDelay);
+
+    interests.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleItems(prev => [...prev, index]);
+      }, cardDelay + index * stagger);
+    });
+  }, []);
+
   return (
-    <motion.section
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="w-full max-w-2xl mx-auto px-6 py-8"
-    >
-      <motion.h2
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium"
+    <section className="w-full max-w-2xl mx-auto px-6 py-8">
+      <h2
+        className={`text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium transition-all duration-300 ${
+          showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+        }`}
         style={{ fontFamily: "var(--font-sans)" }}
       >
         Explore
-      </motion.h2>
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {interests.map((item) => {
+        {interests.map((item, idx) => {
           const Icon = item.icon;
           return (
-            <motion.div key={item.label} variants={itemVariants}>
+            <div
+              key={item.label}
+              className={`transition-all duration-300 ${
+                visibleItems.includes(idx) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
               <Link
                 href={item.href}
                 className="group block p-5 rounded-xl bg-white border border-[#e5e2db] hover:border-[#c45c3e]/30 transition-all duration-300 card-hover relative overflow-hidden"
@@ -88,11 +88,11 @@ export function Interests() {
                   <ArrowUpRight className="w-5 h-5 text-[#9a9a9a] group-hover:text-[#c45c3e] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                 </div>
               </Link>
-            </motion.div>
+            </div>
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 }
 

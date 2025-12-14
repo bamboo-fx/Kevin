@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const bioItems = [
   {
@@ -30,43 +30,29 @@ const bioItems = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.4
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.4, 0, 0.2, 1]
-    }
-  }
-};
-
 export function Bio() {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+  useEffect(() => {
+    const delay = 2000;
+    const stagger = 150;
+
+    bioItems.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleItems(prev => [...prev, index]);
+      }, delay + index * stagger);
+    });
+  }, []);
+
   return (
-    <motion.section
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="w-full max-w-2xl mx-auto px-6 py-4"
-    >
+    <section className="w-full max-w-2xl mx-auto px-6 py-4">
       <div className="space-y-4">
         {bioItems.map((item, index) => (
-          <motion.div
+          <div
             key={index}
-            variants={itemVariants}
-            className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-colors duration-300"
+            className={`group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ${
+              visibleItems.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+            }`}
           >
             <p className="text-[17px] leading-relaxed text-[#6b6b6b]" style={{ fontFamily: "var(--font-sans)" }}>
               {item.text}{" "}
@@ -104,10 +90,10 @@ export function Bio() {
                 </>
               )}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
 

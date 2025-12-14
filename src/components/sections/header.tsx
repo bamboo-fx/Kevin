@@ -1,17 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 export function Header() {
+  const { displayedText, isComplete } = useTypewriter("Kevin Xia", 100, 0);
+
   return (
     <header className="w-full max-w-2xl mx-auto flex flex-col items-center pt-20 pb-8">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="relative mb-8 group"
-      >
+      <div className="relative mb-8 group">
         <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[#c45c3e]/20 via-transparent to-[#4a7c59]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <div className="relative">
           <div className="absolute inset-0 rounded-full animate-pulse-ring bg-[#c45c3e]/10" style={{ animationDuration: '3s' }} />
@@ -25,24 +22,18 @@ export function Header() {
             style={{ width: "160px", height: "160px", objectFit: "cover" }}
           />
         </div>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-        className="text-center"
-      >
-        <h1 className="text-5xl md:text-6xl font-normal tracking-tight mb-3" style={{ fontFamily: "var(--font-serif)" }}>
-          Kevin Xia
+      <div className="text-center">
+        <h1 className="text-5xl md:text-6xl font-normal tracking-tight mb-3 min-h-[4rem]" style={{ fontFamily: "var(--font-serif)" }}>
+          {displayedText}
+          {!isComplete && <span className="animate-pulse">|</span>}
         </h1>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "3rem" }}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          className="h-[2px] bg-gradient-to-r from-transparent via-[#c45c3e] to-transparent mx-auto"
+        <div
+          className="h-[2px] bg-gradient-to-r from-transparent via-[#c45c3e] to-transparent mx-auto transition-all duration-500"
+          style={{ width: isComplete ? "3rem" : "0" }}
         />
-      </motion.div>
+      </div>
     </header>
   );
 }
