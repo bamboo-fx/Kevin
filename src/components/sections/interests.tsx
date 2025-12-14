@@ -49,7 +49,7 @@ export function Interests() {
   return (
     <section className="w-full max-w-2xl mx-auto px-6 py-8">
       <h2
-        className={`text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium transition-all duration-300 ${
+        className={`text-sm uppercase tracking-[0.2em] text-[#9a9a9a] mb-6 font-medium text-center transition-all duration-300 ${
           showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
         }`}
         style={{ fontFamily: "var(--font-sans)" }}
@@ -76,7 +76,7 @@ export function Interests() {
                     <Icon className="w-5 h-5 text-[#6b6b6b] group-hover:text-[#c45c3e] transition-colors duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-base font-medium text-[#1a1a1a] group-hover:text-[#c45c3e] transition-colors duration-300" style={{ fontFamily: "var(--font-serif)" }}>
+                    <h3 className="text-base text-[#1a1a1a] group-hover:text-[#c45c3e] transition-colors duration-300" style={{ fontFamily: "var(--font-serif)" }}>
                       {item.label}
                     </h3>
                     <p className="text-xs text-[#9a9a9a] mt-1" style={{ fontFamily: "var(--font-sans)" }}>

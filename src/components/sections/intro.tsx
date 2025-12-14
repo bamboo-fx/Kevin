@@ -17,7 +17,7 @@ export function Intro() {
           if (word === "CS" || word === "Math") {
             return (
               <span key={idx}>
-                <span className="text-[#1a1a1a] font-medium">{word}</span>{" "}
+                <span className="text-[#1a1a1a]">{word}</span>{" "}
               </span>
             );
           }
