@@ -50,17 +50,8 @@ export default function BooksPage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+      <main className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16">
+        <div>
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 mb-12 group"
@@ -69,14 +60,9 @@ export default function BooksPage() {
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
             <span className="text-sm tracking-wide">Back to home</span>
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           <h1 
             className="text-5xl font-light text-[#1a1a1a] mb-4" 
             style={{ fontFamily: "var(--font-serif)" }}
@@ -87,9 +73,9 @@ export default function BooksPage() {
             className="text-lg text-[#6b6b6b] leading-relaxed"
             style={{ fontFamily: "var(--font-sans)" }}
           >
-            Books I've read and favorite quotes that resonated with me.
+            Actively trying to read more, send me any recommendations!
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           variants={containerVariants}
@@ -131,7 +117,7 @@ export default function BooksPage() {
               </div>
 
               <div className="space-y-3">
-                {book.quotes.slice(0, 3).map((quote, quoteIdx) => (
+                {book.quotes.map((quote, quoteIdx) => (
                   <div
                     key={quoteIdx}
                     className="border-l-2 border-[#c45c3e]/30 pl-2"
@@ -144,16 +130,11 @@ export default function BooksPage() {
                     </p>
                   </div>
                 ))}
-                {book.quotes.length > 3 && (
-                  <p className="text-xs text-[#9a9a9a] italic pt-2" style={{ fontFamily: "var(--font-sans)" }}>
-                    +{book.quotes.length - 3} more quotes
-                  </p>
-                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </motion.main>
+      </main>
     </div>
   );
 }
