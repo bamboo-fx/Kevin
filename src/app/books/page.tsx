@@ -18,30 +18,6 @@ const books = [
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.9, rotateZ: -2 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotateZ: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.34, 1.56, 0.64, 1]
-    }
-  }
-};
-
 export default function BooksPage() {
   return (
     <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
@@ -77,22 +53,11 @@ export default function BooksPage() {
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {books.map((book, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={itemVariants}
-              whileHover={{ 
-                y: -8, 
-                rotateZ: 1,
-                transition: { duration: 0.2 } 
-              }}
-              className="bg-gradient-to-br from-[#fff9e6] via-[#fffef5] to-[#fff9e6] border-2 border-[#e5d4a3] rounded-sm p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer relative group"
+              className="bg-gradient-to-br from-[#fff9e6] via-[#fffef5] to-[#fff9e6] border-2 border-[#e5d4a3] rounded-sm p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] transition-all duration-300 cursor-pointer relative group hover:-translate-y-2"
               style={{ 
                 transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
               }}
@@ -131,9 +96,9 @@ export default function BooksPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </main>
     </div>
   );
