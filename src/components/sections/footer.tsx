@@ -1,40 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.8 }}
-      className="w-full max-w-2xl mx-auto px-6 py-12 mt-8"
-    >
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#e5e2db] to-transparent" />
-        <p className="text-sm text-[#9a9a9a] tracking-wide" style={{ fontFamily: "var(--font-sans)" }}>
-          © {currentYear} Kevin Xia
-        </p>
+    <footer className="py-12 relative z-10">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="flex items-center justify-center gap-2"
+      >
         <motion.div
-          className="flex items-center gap-1.5 text-xs text-[#bbb]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
+          animate={{
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
-          <span>Made with</span>
-          <motion.span
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-            className="text-[#c45c3e]"
-          >
-            ♥
-          </motion.span>
-          <span>in California</span>
+          <Heart className="w-5 h-5 text-[#c45c3e] fill-[#c45c3e]" />
         </motion.div>
-      </div>
-    </motion.footer>
+      </motion.div>
+    </footer>
   );
 }
 
