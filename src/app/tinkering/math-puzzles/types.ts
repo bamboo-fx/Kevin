@@ -26,3 +26,4 @@ export interface GameMetadata {
   icon?: string;
 }
 
+

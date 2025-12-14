@@ -19,7 +19,11 @@ const studies = [
   "Chemistry",
   "Biology",
   "Special Relativity Physics",
-  "STEM & Social Impact"
+  "STEM & Social Impact",
+  "Principles of Economic Analysis",
+  "Psychology",
+  "English with an Accent",
+  "Academic Writing"
 ];
 
 const labs = [
