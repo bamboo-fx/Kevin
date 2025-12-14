@@ -14,40 +14,28 @@ export function Intro() {
     <section className="w-full max-w-2xl mx-auto px-6 py-6">
       <p className="text-lg md:text-xl text-[#6b6b6b] leading-relaxed min-h-[2.5rem]" style={{ fontFamily: "var(--font-sans)" }}>
         {displayedText.split(" ").map((word, idx) => {
-          if (word === "CS" || word === "Math" || word === "Mudd." || word.includes("Harvey")) {
-            const cleanWord = word.replace("Mudd.", "");
-            const isMudd = word === "Mudd.";
+          if (word === "CS" || word === "Math") {
             return (
               <span key={idx}>
-                {word.includes("Harvey") ? (
-                  <Link
-                    href="https://www.hmc.edu/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-300"
-                  >
-                    Harvey Mudd
-                  </Link>
-                ) : isMudd ? (
-                  <>
-                    <Link
-                      href="https://www.hmc.edu/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-300"
-                    >
-                      Mudd
-                    </Link>
-                    .
-                  </>
-                ) : (
-                  <span className="text-[#1a1a1a] font-medium">{word}</span>
-                )}{" "}
+                <span className="text-[#1a1a1a] font-medium">{word}</span>{" "}
               </span>
             );
           }
+          if (word.includes("Harvey") || word === "Mudd.") {
+            return null;
+          }
           return <span key={idx}>{word} </span>;
         })}
+        {displayedText.includes("Harvey") && (
+          <>
+            <Link
+              href="/learnings"
+              className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-300"
+            >
+              Harvey Mudd
+            </Link>.{" "}
+          </>
+        )}
         {!isComplete && <span className="animate-pulse">|</span>}
       </p>
     </section>

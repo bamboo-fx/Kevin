@@ -56,7 +56,7 @@ export function Interests() {
       >
         Explore
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-3">
         {interests.map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -68,24 +68,21 @@ export function Interests() {
             >
               <Link
                 href={item.href}
-                className="group block p-5 rounded-xl bg-white border border-[#e5e2db] hover:border-[#c45c3e]/30 transition-all duration-300 card-hover relative overflow-hidden"
+                className="group block p-4 rounded-xl bg-white border border-[#e5e2db] hover:border-[#c45c3e]/30 transition-all duration-300 card-hover relative overflow-hidden"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                <div className="relative flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-[#f0eeea] group-hover:bg-white/80 transition-colors duration-300">
-                      <Icon className="w-5 h-5 text-[#6b6b6b] group-hover:text-[#c45c3e] transition-colors duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-[#1a1a1a] group-hover:text-[#c45c3e] transition-colors duration-300" style={{ fontFamily: "var(--font-serif)" }}>
-                        {item.label}
-                      </h3>
-                      <p className="text-sm text-[#9a9a9a]" style={{ fontFamily: "var(--font-sans)" }}>
-                        {item.description}
-                      </p>
-                    </div>
+                <div className="relative flex flex-col items-center text-center gap-2">
+                  <div className="p-2 rounded-lg bg-[#f0eeea] group-hover:bg-white/80 transition-colors duration-300">
+                    <Icon className="w-5 h-5 text-[#6b6b6b] group-hover:text-[#c45c3e] transition-colors duration-300" />
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-[#9a9a9a] group-hover:text-[#c45c3e] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                  <div>
+                    <h3 className="text-base font-medium text-[#1a1a1a] group-hover:text-[#c45c3e] transition-colors duration-300" style={{ fontFamily: "var(--font-serif)" }}>
+                      {item.label}
+                    </h3>
+                    <p className="text-xs text-[#9a9a9a] mt-1" style={{ fontFamily: "var(--font-sans)" }}>
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </Link>
             </div>
