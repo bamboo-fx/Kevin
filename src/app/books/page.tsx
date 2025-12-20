@@ -1,20 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Quote, BookOpen } from "lucide-react";
+import { ArrowLeft, Quote } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
-const headStartBook = {
-  title: "Mathematics for Human Flourishing",
-  author: "Francis Su",
-  quotes: [
-    "The skills society needs from math may change, but the virtues needed from math will not.",
-    "Exploration stimulates the virtue of creativity.",
-    "Even wrong ideas soften the soil in which good ideas can grow.",
-    "Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.",
-    "Mathematics is the science of patterns and the art of engaging the meaning of those patterns."
-  ]
-};
+const books = [
+  {
+    title: "Mathematics for Human Flourishing",
+    author: "Francis Su",
+    quotes: [
+      "The skills society needs from math may change, but the virtues needed from math will not.",
+      "Exploration stimulates the virtue of creativity.",
+      "Even wrong ideas soften the soil in which good ideas can grow.",
+      "Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.",
+      "Mathematics is the science of patterns and the art of engaging the meaning of those patterns."
+    ]
+  },
+  {
+    title: "100M Money Models",
+    author: "Alex Hormozi",
+    quotes: [
+      "Offer value."
+    ]
+  },
+  {
+    title: "The Promise of Bitcoin",
+    author: "Bobby C. Lee",
+    quotes: [
+      "What actually is money?",
+      "Nothing beats conviction, trust your gut."
+    ]
+  },
+  {
+    title: "Uncanny Valley",
+    author: "Anna Wiener",
+    quotes: [
+      "Take a step back, there is a world outside of tech, once in a lifetime events seem to be happening more than once in a lifetime in the valley"
+    ]
+  }
+];
 
 function BookCard({ book }: { book: { title: string; author: string; quotes: string[] } }) {
   return (
@@ -38,21 +62,23 @@ function BookCard({ book }: { book: { title: string; author: string; quotes: str
         </p>
       </div>
 
-      <div className="space-y-1.5">
-        {book.quotes.map((quote, quoteIdx) => (
-          <div
-            key={quoteIdx}
-            className="border-l-2 border-[#c45c3e]/20 pl-2"
-          >
-            <p 
-              className="text-[#5a5a5a] text-xs leading-snug"
-              style={{ fontFamily: "var(--font-sans)" }}
+      {book.quotes && book.quotes.length > 0 && (
+        <div className="space-y-1.5">
+          {book.quotes.map((quote, quoteIdx) => (
+            <div
+              key={quoteIdx}
+              className="border-l-2 border-[#c45c3e]/20 pl-2"
             >
-              "{quote}"
-            </p>
-          </div>
-        ))}
-      </div>
+              <p 
+                className="text-[#5a5a5a] text-xs leading-snug"
+                style={{ fontFamily: "var(--font-sans)" }}
+              >
+                {quote}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -93,87 +119,10 @@ export default function BooksPage() {
             </p>
           </div>
 
-          {/* 2026 Reading Challenge */}
-          <div className="mb-10 p-6 bg-white border border-[#e5e2db] rounded-lg">
-            <div className="flex items-start gap-4">
-              <div className="p-2 bg-[#c45c3e]/10 rounded-lg">
-                <BookOpen className="w-6 h-6 text-[#c45c3e]" />
-              </div>
-              <div>
-                <h2 
-                  className="text-2xl font-medium text-[#1a1a1a] mb-1" 
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  2026 Reading Challenge
-                </h2>
-                <p 
-                  className="text-base text-[#6b6b6b] mb-2"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  Read 1 book per month
-                </p>
-                <p 
-                  className="text-sm text-[#9a9a9a]"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  ~10 pages per day → ~300 pages per month → 12 books in 2026
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Head Start Section */}
-          <div className="mb-8">
-            <p 
-              className="text-xl font-bold text-[#1a1a1a] mb-2"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              December 2025
-            </p>
-            <p 
-              className="text-sm font-bold text-[#1a1a1a] mb-3"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              (Got a head start)
-            </p>
-            <div className="max-w-sm">
-              <div className="bg-[#fffdf5] border border-[#e8e0c8] rounded p-3 shadow-sm hover:shadow-md transition-all duration-300 ease-out relative group">
-                <div className="absolute top-2 right-2 opacity-30 group-hover:opacity-50 transition-opacity">
-                  <Quote className="w-3.5 h-3.5 text-[#c45c3e]" />
-                </div>
-                
-                <div className="mb-2 pr-5">
-                  <h2 
-                    className="text-sm font-medium text-[#1a1a1a] mb-0.5 leading-tight" 
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    {headStartBook.title}
-                  </h2>
-                  <p 
-                    className="text-[#9a9a9a] text-[10px]"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {headStartBook.author}
-                  </p>
-                </div>
-
-                <div className="space-y-1.5">
-                  {headStartBook.quotes.map((quote, quoteIdx) => (
-                    <div
-                      key={quoteIdx}
-                      className="border-l-2 border-[#c45c3e]/20 pl-2"
-                    >
-                      <p 
-                        className="text-[#5a5a5a] text-xs leading-snug"
-                        style={{ fontFamily: "var(--font-sans)" }}
-                      >
-                        "{quote}"
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {books.map((book, idx) => (
+              <BookCard key={idx} book={book} />
+            ))}
           </div>
         </main>
       </div>
