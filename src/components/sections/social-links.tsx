@@ -1,22 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Twitter, Instagram, Linkedin, Github } from "lucide-react";
+import { Instagram, Linkedin, Github, Youtube, Mail } from "lucide-react";
 import { useTransition } from "@/contexts/transition-context";
 
 const socials = [
-  {
-    label: "Twitter",
-    href: "https://x.com/bamboo_farmer",
-    icon: Twitter,
-    hoverColor: "#1DA1F2"
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/kev_xia/",
-    icon: Instagram,
-    hoverColor: "#E4405F"
-  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/kevin-xia22",
@@ -28,6 +16,24 @@ const socials = [
     href: "https://github.com/bamboo-fx",
     icon: Github,
     hoverColor: "#333"
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@kevinx-io",
+    icon: Youtube,
+    hoverColor: "#FF0000"
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/kev_xia/",
+    icon: Instagram,
+    hoverColor: "#E4405F"
+  },
+  {
+    label: "Email",
+    href: "mailto:kevinxia2024@gmail.com",
+    icon: Mail,
+    hoverColor: "#6b6b6b"
   }
 ];
 
