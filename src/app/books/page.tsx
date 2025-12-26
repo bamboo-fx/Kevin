@@ -9,11 +9,11 @@ const books = [
     title: "Mathematics for Human Flourishing",
     author: "Francis Su",
     quotes: [
-      "The skills society needs from math may change, but the virtues needed from math will not.",
-      "Exploration stimulates the virtue of creativity.",
-      "Even wrong ideas soften the soil in which good ideas can grow.",
-      "Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.",
-      "Mathematics is the science of patterns and the art of engaging the meaning of those patterns."
+      "\"The skills society needs from math may change, but the virtues needed from math will not.\"",
+      "\"Exploration stimulates the virtue of creativity.\"",
+      "\"Even wrong ideas soften the soil in which good ideas can grow.\"",
+      "\"Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.\"",
+      "\"Mathematics is the science of patterns and the art of engaging the meaning of those patterns.\""
     ]
   },
   {
@@ -36,6 +36,14 @@ const books = [
     author: "Anna Wiener",
     quotes: [
       "Take a step back, there is a world outside of tech, once in a lifetime events seem to be happening more than once in a lifetime in the valley"
+    ]
+  },
+  {
+    title: "The Third Door",
+    author: "Alex Banayan",
+    quotes: [
+      "\"A tipping point only appears in hindsight.\" \"You don't feel it when you're in the trenches.\" \"Being an entrepreneur is about pushing, not tipping.\"",
+      "\"Act like you belong.\" \"Walk into a room like you've been there before.\" \"Don't gawk over celebrities and don't ask for pictures.\" \"Remember, you're the big guy.\""
     ]
   }
 ];
