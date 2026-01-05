@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Code, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
 interface Project {
@@ -15,9 +15,9 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Neural Goal Graph",
-    description: "A fluid, futuristic directed goal-mapping tool with an infinite canvas, featuring glowing nodes and curved dependencies. Create, connect, and visualize your goals in an interactive neural network.",
+    description: "A fluid, futuristic directed goal mapping tool with an infinite canvas. Create, connect, and visualize your goals in an interactive graph.",
     tags: ["React", "TypeScript", "Canvas", "Interactive"],
-    date: "Dec 2025",
+    date: "Jan 2025",
     link: "/tinkering/neural-goal-graph"
   },
   {
@@ -81,11 +81,6 @@ export default function TinkeringPage() {
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    {project.link ? (
-                      <BookOpen className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
-                    ) : (
-                      <Code className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
-                    )}
                     <h2 
                       className="text-xl font-medium text-[#1a1a1a]" 
                       style={{ fontFamily: "var(--font-serif)" }}
@@ -127,7 +122,6 @@ export default function TinkeringPage() {
               <div key={idx} {...commonProps}>
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <Code className="w-5 h-5 text-[#c45c3e] group-hover:rotate-6 transition-transform duration-300" />
                     <h2 
                       className="text-xl font-medium text-[#1a1a1a]" 
                       style={{ fontFamily: "var(--font-serif)" }}
@@ -164,21 +158,6 @@ export default function TinkeringPage() {
               </div>
             );
           })}
-          
-          {/* Updating, more coming soon */}
-          <div
-            className="bg-white/50 border-2 border-dashed border-[#e5e5e5] rounded-lg p-6 text-center"
-            style={{
-              animation: `fadeInUp 0.4s ease-out ${projects.length * 0.1}s both`
-            }}
-          >
-            <p 
-              className="text-[#9a9a9a] text-sm"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Updating, more coming soon
-            </p>
-          </div>
         </div>
       </main>
     </div>

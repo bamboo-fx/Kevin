@@ -176,21 +176,6 @@ export default function MathPuzzlesPage() {
                     </p>
                   </motion.button>
                 ))}
-                
-                {/* More Coming Soon Card */}
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: GAMES.length * 0.05 }}
-                  className="bg-gray-50/50 rounded-xl p-5 border-2 border-dashed border-gray-200 flex flex-col items-center justify-center min-h-[180px] text-center"
-                >
-                  <h3 className="font-serif font-semibold text-lg text-gray-400 mb-1">
-                    More Coming Soon
-                  </h3>
-                  <p className="text-xs text-gray-400">
-                    New puzzles on the way
-                  </p>
-                </motion.div>
               </div>
             </div>
           </div>

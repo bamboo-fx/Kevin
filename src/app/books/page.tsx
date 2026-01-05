@@ -1,95 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Quote } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
 const books = [
   {
     title: "Mathematics for Human Flourishing",
     author: "Francis Su",
-    quotes: [
-      "\"The skills society needs from math may change, but the virtues needed from math will not.\"",
-      "\"Exploration stimulates the virtue of creativity.\"",
-      "\"Even wrong ideas soften the soil in which good ideas can grow.\"",
-      "\"Stories are an essential part of retaining new knowledge. It is much easier to remember things when they make sense in a story.\"",
-      "\"Mathematics is the science of patterns and the art of engaging the meaning of those patterns.\""
-    ]
+    dateRead: "Dec 2025"
   },
   {
     title: "100M Money Models",
     author: "Alex Hormozi",
-    quotes: [
-      "Offer value."
-    ]
+    dateRead: "Dec 2025"
   },
   {
     title: "The Promise of Bitcoin",
     author: "Bobby C. Lee",
-    quotes: [
-      "What actually is money?",
-      "Nothing beats conviction, trust your gut."
-    ]
+    dateRead: "Dec 2025"
   },
   {
     title: "Uncanny Valley",
     author: "Anna Wiener",
-    quotes: [
-      "Take a step back, there is a world outside of tech, once in a lifetime events seem to be happening more than once in a lifetime in the valley"
-    ]
+    dateRead: "Dec 2025"
   },
   {
     title: "The Third Door",
     author: "Alex Banayan",
-    quotes: [
-      "\"A tipping point only appears in hindsight.\" \"You don't feel it when you're in the trenches.\" \"Being an entrepreneur is about pushing, not tipping.\"",
-      "\"Act like you belong.\" \"Walk into a room like you've been there before.\" \"Don't gawk over celebrities and don't ask for pictures.\" \"Remember, you're the big guy.\""
-    ]
+    dateRead: "Dec 2025"
   }
 ];
-
-function BookCard({ book }: { book: { title: string; author: string; quotes: string[] } }) {
-  return (
-    <div className="bg-[#fffdf5] border border-[#e8e0c8] rounded p-3 shadow-sm hover:shadow-md transition-all duration-300 ease-out relative group">
-      <div className="absolute top-2 right-2 opacity-30 group-hover:opacity-50 transition-opacity">
-        <Quote className="w-3.5 h-3.5 text-[#c45c3e]" />
-      </div>
-      
-      <div className="mb-2 pr-5">
-        <h2 
-          className="text-sm font-medium text-[#1a1a1a] mb-0.5 leading-tight" 
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          {book.title}
-        </h2>
-        <p 
-          className="text-[#9a9a9a] text-[10px]"
-          style={{ fontFamily: "var(--font-sans)" }}
-        >
-          {book.author}
-        </p>
-      </div>
-
-      {book.quotes && book.quotes.length > 0 && (
-        <div className="space-y-1.5">
-          {book.quotes.map((quote, quoteIdx) => (
-            <div
-              key={quoteIdx}
-              className="border-l-2 border-[#c45c3e]/20 pl-2"
-            >
-              <p 
-                className="text-[#5a5a5a] text-xs leading-snug"
-                style={{ fontFamily: "var(--font-sans)" }}
-              >
-                {quote}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 export default function BooksPage() {
   return (
@@ -127,11 +68,35 @@ export default function BooksPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="space-y-3">
             {books.map((book, idx) => (
-              <BookCard key={idx} book={book} />
+              <li key={idx} className="flex items-start gap-3">
+                <span className="text-[#c45c3e] mt-1">•</span>
+                <div className="flex-1">
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <h2 
+                      className="text-lg font-medium text-[#1a1a1a]" 
+                      style={{ fontFamily: "var(--font-serif)" }}
+                    >
+                      {book.title}
+                    </h2>
+                    <span 
+                      className="text-[#6b6b6b] text-sm"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {book.author}
+                    </span>
+                    <span 
+                      className="text-[#9a9a9a] text-xs"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {book.dateRead}
+                    </span>
+                  </div>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </main>
       </div>
     </PageTransition>
