@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import html2canvas from 'html2canvas';
 import { GoalNode as IGoalNode, GoalEdge, ViewState } from './types';
 import { GoalNode } from './components/GoalNode';
 import { EdgeLine } from './components/EdgeLine';
@@ -18,7 +19,22 @@ interface ContextMenuState {
   targetId: string;
 }
 
-const App: React.FC = () => {
+export interface Project {
+  id: string;
+  name: string;
+  nodes: IGoalNode[];
+  edges: GoalEdge[];
+  view: ViewState;
+  createdAt: number;
+  updatedAt: number;
+}
+
+interface AppProps {
+  projectId: string;
+  onBack: () => void;
+}
+
+const App: React.FC<AppProps> = ({ projectId, onBack }) => {
   const [nodes, setNodes] = useState<IGoalNode[]>([]);
   const [edges, setEdges] = useState<GoalEdge[]>([]);
   const [view, setView] = useState<ViewState>({ x: 0, y: 0, zoom: 1 });
@@ -33,6 +49,7 @@ const App: React.FC = () => {
   const lastMousePos = useRef({ x: 0, y: 0 });
   const pinchDistance = useRef<number | null>(null);
   const pinchCenter = useRef<{ x: number; y: number } | null>(null);
+
 
   const resetGraph = useCallback(() => {
     const initialNode: IGoalNode = {
@@ -53,24 +70,90 @@ const App: React.FC = () => {
     setView({ x: 0, y: 0, zoom: 1 });
   }, []);
 
-  useEffect(() => {
-    const savedNodes = localStorage.getItem('neural_nodes_v4');
-    const savedEdges = localStorage.getItem('neural_edges_v4');
+  const exportAsPNG = useCallback(async () => {
+    if (!canvasRef.current) return;
     
-    if (savedNodes && savedEdges) {
-      setNodes(JSON.parse(savedNodes));
-      setEdges(JSON.parse(savedEdges));
-    } else {
-      resetGraph();
+    try {
+      // Hide UI elements temporarily
+      const buttons = document.querySelectorAll('[data-export-hide]');
+      buttons.forEach(btn => {
+        (btn as HTMLElement).style.visibility = 'hidden';
+      });
+      
+      // Get project name from localStorage
+      const savedProjects = localStorage.getItem('neural_projects_v1');
+      let projectName = 'neural-graph';
+      if (savedProjects) {
+        const parsedProjects: Project[] = JSON.parse(savedProjects);
+        const project = parsedProjects.find(p => p.id === projectId);
+        if (project) {
+          projectName = project.name;
+        }
+      }
+      
+      // Capture the canvas area
+      const canvas = await html2canvas(canvasRef.current, {
+        backgroundColor: '#050505',
+        scale: 2, // Higher quality
+        useCORS: true,
+        logging: false,
+      });
+      
+      // Show UI elements again
+      buttons.forEach(btn => {
+        (btn as HTMLElement).style.visibility = 'visible';
+      });
+      
+      // Create download link
+      const link = document.createElement('a');
+      const sanitizedName = projectName.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+      link.download = `${sanitizedName}-${new Date().toISOString().split('T')[0]}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (error) {
+      console.error('Error exporting graph:', error);
+      alert('Failed to export graph. Please try again.');
     }
-  }, [resetGraph]);
+  }, [canvasRef, projectId]);
 
+  // Load project on mount or when projectId changes
   useEffect(() => {
-    if (nodes.length > 0) {
-      localStorage.setItem('neural_nodes_v4', JSON.stringify(nodes));
-      localStorage.setItem('neural_edges_v4', JSON.stringify(edges));
+    const savedProjects = localStorage.getItem('neural_projects_v1');
+    if (savedProjects) {
+      const parsedProjects: Project[] = JSON.parse(savedProjects);
+      const project = parsedProjects.find(p => p.id === projectId);
+      if (project) {
+        setNodes(project.nodes);
+        setEdges(project.edges);
+        setView(project.view);
+      }
     }
-  }, [nodes, edges]);
+  }, [projectId]);
+
+  // Save current project when nodes/edges/view change
+  useEffect(() => {
+    const savedProjects = localStorage.getItem('neural_projects_v1');
+    if (savedProjects) {
+      const parsedProjects: Project[] = JSON.parse(savedProjects);
+      const currentProject = parsedProjects.find(p => p.id === projectId);
+      if (currentProject) {
+        // Only save if data actually changed
+        const nodesChanged = JSON.stringify(currentProject.nodes) !== JSON.stringify(nodes);
+        const edgesChanged = JSON.stringify(currentProject.edges) !== JSON.stringify(edges);
+        const viewChanged = JSON.stringify(currentProject.view) !== JSON.stringify(view);
+        
+        if (nodesChanged || edgesChanged || viewChanged) {
+          const updatedProjects = parsedProjects.map(p => 
+            p.id === projectId 
+              ? { ...p, nodes, edges, view, updatedAt: Date.now() }
+              : p
+          );
+          localStorage.setItem('neural_projects_v1', JSON.stringify(updatedProjects));
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nodes, edges, view, projectId]);
 
   const handleNodeDrag = useCallback((id: string, dx: number, dy: number) => {
     setNodes(prev => prev.map(n => n.id === id ? { ...n, x: n.x + dx, y: n.y + dy } : n));
@@ -269,7 +352,7 @@ const App: React.FC = () => {
       }}
       onContextMenu={(e) => e.preventDefault()}
     >
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex items-start gap-4">
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex items-start gap-4" data-export-hide>
         <div>
           <h1 className="text-sm font-black tracking-[0.4em] text-white uppercase leading-none mb-1">
             NEURAL SYSTEM
@@ -280,15 +363,35 @@ const App: React.FC = () => {
         </div>
       </div>
 
+      {/* Back to Projects Button */}
+      <div className="absolute top-10 right-10 z-50 pointer-events-auto">
+        <button
+          onClick={onBack}
+          data-export-hide
+          className="h-12 px-6 glass text-white rounded-full flex items-center gap-3 hover:bg-white hover:text-black transition-all font-bold text-xs uppercase tracking-widest shadow-xl"
+        >
+          ← Projects
+        </button>
+      </div>
+
       <div className="absolute bottom-10 right-10 z-50 flex items-center gap-4">
         <button 
           onClick={() => handleAddNode()}
+          data-export-hide
           className="h-14 px-8 glass text-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all font-bold text-xs uppercase tracking-widest shadow-2xl"
         >
           Add Goal
         </button>
         <button 
+          onClick={exportAsPNG}
+          data-export-hide
+          className="h-14 px-8 glass text-white/60 border border-white/10 rounded-full flex items-center justify-center hover:text-white hover:bg-white/10 hover:border-white/30 transition-all text-xs font-bold uppercase tracking-widest"
+        >
+          Export PNG
+        </button>
+        <button 
           onClick={resetGraph}
+          data-export-hide
           className="h-14 px-8 glass text-white/40 border border-white/5 rounded-full flex items-center justify-center hover:text-white hover:bg-red-500/20 hover:border-red-500/40 transition-all text-xs font-bold uppercase tracking-widest"
         >
           Reset
@@ -313,7 +416,7 @@ const App: React.FC = () => {
       )}
 
       {inspectedNode && (
-        <div className="absolute right-10 top-10 w-96 z-[100] p-8 rounded-[40px] glass shadow-2xl animate-in fade-in slide-in-from-right-10 duration-500 pointer-events-auto flex flex-col">
+        <div className="absolute right-10 top-10 w-96 z-[100] p-8 rounded-[40px] glass shadow-2xl animate-in fade-in slide-in-from-right-10 duration-500 pointer-events-auto flex flex-col" data-export-hide>
           <div className="flex justify-between items-start mb-8">
              <div className="mono text-4xl font-light text-white opacity-40">
               {inspectedNode.index.toString().padStart(2, '0')}
@@ -439,7 +542,7 @@ const App: React.FC = () => {
         </div>
       )}
 
-      <div className="absolute bottom-10 left-10 z-50 pointer-events-none flex gap-8 items-center text-[9px] font-bold uppercase tracking-[0.3em] text-white/20">
+      <div className="absolute bottom-10 left-10 z-50 pointer-events-none flex gap-8 items-center text-[9px] font-bold uppercase tracking-[0.3em] text-white/20" data-export-hide>
         <div className="flex flex-col">
           <span>Active Nodes</span>
           <span className="text-white/40 text-xs mt-1 mono">{nodes.length}</span>

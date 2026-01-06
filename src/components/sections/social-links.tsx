@@ -6,6 +6,12 @@ import { useTransition } from "@/contexts/transition-context";
 
 const socials = [
   {
+    label: "YouTube",
+    href: "https://www.youtube.com/@kevinx-io",
+    icon: Youtube,
+    hoverColor: "#FF0000"
+  },
+  {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/kevin-xia22",
     icon: Linkedin,
@@ -18,16 +24,20 @@ const socials = [
     hoverColor: "#333"
   },
   {
-    label: "YouTube",
-    href: "https://www.youtube.com/@kevinx-io",
-    icon: Youtube,
-    hoverColor: "#FF0000"
-  },
-  {
     label: "Instagram",
     href: "https://www.instagram.com/kev_xia/",
     icon: Instagram,
     hoverColor: "#E4405F"
+  },
+  {
+    label: "X",
+    href: "https://x.com/kevinxia",
+    icon: () => (
+      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    ),
+    hoverColor: "#000000"
   },
   {
     label: "Email",
@@ -76,6 +86,7 @@ export function SocialLinks() {
       <nav className="flex items-center justify-center gap-4">
         {socials.map((social, idx) => {
           const Icon = social.icon;
+          const isXIcon = social.label === "X";
           return (
             <a
               key={social.label}
@@ -101,7 +112,11 @@ export function SocialLinks() {
                   e.currentTarget.style.color = '#6b6b6b';
                 }}
               >
-                <Icon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:scale-105" />
+                {isXIcon ? (
+                  <Icon />
+                ) : (
+                  <Icon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:scale-105" />
+                )}
               </div>
               <span 
                 className="text-[10px] font-medium tracking-wide transition-colors duration-200" 

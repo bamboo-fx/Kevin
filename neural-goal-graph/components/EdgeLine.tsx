@@ -14,18 +14,23 @@ export const EdgeLine: React.FC<EdgeLineProps> = ({ id, source, target, onContex
   const dy = target.y - source.y;
   const angle = Math.atan2(dy, dx);
 
+  // Calculate edge points exactly at node boundaries
   const startX = source.x + Math.cos(angle) * source.radius;
   const startY = source.y + Math.sin(angle) * source.radius;
   
   const endX = target.x - Math.cos(angle) * target.radius;
   const endY = target.y - Math.sin(angle) * target.radius;
 
+  // Control points for smooth curve
   const cp1X = startX + (endX - startX) * 0.4;
   const cp1Y = startY;
   const cp2X = startX + (endX - startX) * 0.6;
   const cp2Y = endY;
 
   const path = `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+  
+  // Arrowhead positioned exactly at the edge, pointing into the target node
+  const arrowSize = 8;
 
   return (
     <g 
@@ -55,11 +60,11 @@ export const EdgeLine: React.FC<EdgeLineProps> = ({ id, source, target, onContex
         strokeOpacity="0.4"
       />
       
-      {/* Directional Arrowhead */}
+      {/* Directional Arrowhead - positioned exactly at edge, pointing into target node */}
       <path 
-        d={`M ${endX} ${endY} L ${endX - 10} ${endY - 5} L ${endX - 10} ${endY + 5} Z`} 
+        d={`M 0 0 L ${-arrowSize} ${-arrowSize/2} L ${-arrowSize} ${arrowSize/2} Z`} 
         fill="white" 
-        transform={`rotate(${(angle * 180) / Math.PI} ${endX} ${endY})`} 
+        transform={`translate(${endX}, ${endY}) rotate(${(angle * 180) / Math.PI})`} 
         className="opacity-80"
       />
     </g>

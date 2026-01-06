@@ -3,24 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { BookOpen, Lightbulb, Code } from "lucide-react";
+import { BookOpen, Code } from "lucide-react";
 import { useTransition } from "@/contexts/transition-context";
 
 const sections = [
   {
-    label: "Thoughts",
-    href: "/thoughts",
-    icon: Lightbulb,
+    label: "Tinkering",
+    href: "/tinkering",
+    icon: Code,
   },
   {
     label: "Books",
     href: "/books",
     icon: BookOpen,
-  },
-  {
-    label: "Tinkering",
-    href: "/tinkering",
-    icon: Code,
   }
 ];
 
@@ -68,6 +63,9 @@ export function SectionTabs() {
     </nav>
   );
 }
+
+
+
 
 
 

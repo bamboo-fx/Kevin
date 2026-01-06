@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { BookOpen, Lightbulb, Code } from "lucide-react";
+import { BookOpen, Code } from "lucide-react";
 import { useTransition } from "@/contexts/transition-context";
 
 const interests = [
   {
-    label: "Thoughts",
-    href: "/thoughts",
-    description: "Ideas, reflections & learnings",
-    icon: Lightbulb,
-    gradient: "from-[#c45c3e]/10 to-[#d4a03a]/10"
+    label: "Tinkering",
+    href: "/tinkering",
+    description: "Projects & experiments",
+    icon: Code,
+    gradient: "from-[#8b5cf6]/10 to-[#6366f1]/10"
   },
   {
     label: "Books",
@@ -19,13 +19,6 @@ const interests = [
     description: "What I'm reading",
     icon: BookOpen,
     gradient: "from-[#4a7c59]/10 to-[#3d5a80]/10"
-  },
-  {
-    label: "Tinkering",
-    href: "/tinkering",
-    description: "Projects & experiments",
-    icon: Code,
-    gradient: "from-[#8b5cf6]/10 to-[#6366f1]/10"
   }
 ];
 
