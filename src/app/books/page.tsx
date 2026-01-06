@@ -29,6 +29,11 @@ const books = [
     title: "The Third Door",
     author: "Alex Banayan",
     dateRead: "Dec 2025"
+  },
+  {
+    title: "AI Engineering",
+    author: "Chip Huyen",
+    dateRead: "Dec 2025"
   }
 ];
 
