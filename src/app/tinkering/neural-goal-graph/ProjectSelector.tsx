@@ -78,7 +78,7 @@ export function ProjectSelector({ onSelectProject, onCreateProject, onDeleteProj
                     <span>{project.edges.length} connections</span>
                   </div>
                   <div className="text-[10px] text-white/30">
-                    Updated {new Date(project.updatedAt).toLocaleDateString()}
+                    Updated {new Date(project.updatedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                   </div>
                 </div>
               </div>

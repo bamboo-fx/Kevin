@@ -3,27 +3,42 @@
 import Link from "next/link";
 import { ArrowLeft, BookOpen, FlaskConical } from "lucide-react";
 
-const studies = [
-  "Data Structures",
-  "Computability and Logic",
-  "Probability and Statistics",
-  "Engineering Systems",
-  "Linear Algebra",
-  "Multivariable Calculus",
-  "Discrete Math",
-  "Computational Biology",
-  "Mathematical Biology",
-  "Enterprise and Entrepreneurship",
-  "Physics Mechanics and Wave Motion",
-  "IP Law for Engineers",
-  "Chemistry",
-  "Biology",
-  "Special Relativity Physics",
-  "STEM & Social Impact",
-  "Principles of Economic Analysis",
-  "Psychology",
-  "English with an Accent",
-  "Academic Writing"
+const studyCategories = [
+  {
+    title: "CS/Math",
+    courses: [
+      "Data Structures and Program Development",
+      "Computer Systems",
+      "Discrete Mathematics",
+      "Linear Algebra",
+      "Multivariable Calculus",
+      "Principles of Computer Science",
+      "Probability and Statistics",
+      "Mathematical Biology",
+      "Computational Biology"
+    ]
+  },
+  {
+    title: "Core Curriculum",
+    courses: [
+      "Engineering Systems",
+      "Physics Mechanics and Wave Motion",
+      "Special Relativity",
+      "Chemistry",
+      "Biology",
+      "STEM & Social Impact",
+      "Academic Writing"
+    ]
+  },
+  {
+    title: "Humanities, Social Sciences & Arts",
+    courses: [
+      "Psychology",
+      "Principles of Economic Analysis",
+      "Enterprise and Entrepreneurship",
+      "English with an Accent"
+    ]
+  }
 ];
 
 const labs = [
@@ -73,14 +88,26 @@ export default function HarveyMuddPage() {
                 Studies
               </h2>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {studies.map((study, idx) => (
-                <div
-                  key={idx}
-                  className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#c45c3e] hover:text-[#c45c3e] transition-all duration-300 cursor-default"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  {study}
+            <div className="space-y-8">
+              {studyCategories.map((category, categoryIdx) => (
+                <div key={categoryIdx}>
+                  <h3 
+                    className="text-lg font-medium text-[#1a1a1a] mb-3"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    {category.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {category.courses.map((course, idx) => (
+                      <div
+                        key={idx}
+                        className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#c45c3e] hover:text-[#c45c3e] transition-all duration-300 cursor-default"
+                        style={{ fontFamily: "var(--font-sans)" }}
+                      >
+                        {course}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

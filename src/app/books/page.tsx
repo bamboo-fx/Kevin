@@ -21,11 +21,6 @@ const books = [
     dateRead: "Dec 2025"
   },
   {
-    title: "Uncanny Valley",
-    author: "Anna Wiener",
-    dateRead: "Dec 2025"
-  },
-  {
     title: "The Third Door",
     author: "Alex Banayan",
     dateRead: "Dec 2025"
