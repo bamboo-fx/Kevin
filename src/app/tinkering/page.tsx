@@ -17,7 +17,7 @@ const projects: Project[] = [
     title: "Neural Goal Graph",
     description: "A fluid, futuristic directed goal mapping tool with an infinite canvas. Create, connect, and visualize your goals in an interactive graph.",
     tags: ["React", "TypeScript", "Canvas", "Interactive"],
-    date: "Jan 2025",
+    date: "Jan 2026",
     link: "/tinkering/neural-goal-graph"
   },
   {
