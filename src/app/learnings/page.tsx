@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, BookOpen, FlaskConical, GraduationCap } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const studyCategories = [
   {
@@ -85,8 +85,7 @@ export default function HarveyMuddPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <BookOpen className="w-6 h-6 text-[#c45c3e]" />
+            <div className="mb-4">
               <h2 
                 className="text-3xl font-light text-[#1a1a1a]" 
                 style={{ fontFamily: "var(--font-serif)" }}
@@ -121,8 +120,7 @@ export default function HarveyMuddPage() {
 
           <div className="space-y-8">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <FlaskConical className="w-6 h-6 text-[#4a7c59]" />
+              <div className="mb-4">
                 <h2 
                   className="text-3xl font-light text-[#1a1a1a]" 
                   style={{ fontFamily: "var(--font-serif)" }}
@@ -144,8 +142,7 @@ export default function HarveyMuddPage() {
             </div>
 
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <GraduationCap className="w-6 h-6 text-[#1a1a1a]" />
+              <div className="mb-4">
                 <h2 
                   className="text-3xl font-light text-[#1a1a1a]" 
                   style={{ fontFamily: "var(--font-serif)" }}

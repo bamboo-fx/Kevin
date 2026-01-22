@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { BookOpen, Code } from "lucide-react";
 import { useTransition } from "@/contexts/transition-context";
 
 const interests = [
@@ -10,14 +9,12 @@ const interests = [
     label: "Tinkering",
     href: "/tinkering",
     description: "Projects & experiments",
-    icon: Code,
     gradient: "from-[#8b5cf6]/10 to-[#6366f1]/10"
   },
   {
     label: "Books",
     href: "/books",
     description: "What I'm reading",
-    icon: BookOpen,
     gradient: "from-[#4a7c59]/10 to-[#3d5a80]/10"
   }
 ];
@@ -60,7 +57,6 @@ export function Interests() {
       </h2>
       <div className="flex gap-4 items-stretch">
         {interests.map((item, idx) => {
-          const Icon = item.icon;
           return (
             <div
               key={item.label}
@@ -72,8 +68,7 @@ export function Interests() {
                 href={item.href}
                 className="group flex flex-col w-full p-5 bg-white border border-[#e5e2db] hover:border-[#c45c3e]/40 hover:shadow-sm transition-all duration-200 ease-out"
               >
-                <div className="flex items-center gap-2.5 mb-3">
-                  <Icon className="w-4 h-4 text-[#6b6b6b] group-hover:text-[#c45c3e] transition-colors duration-200 flex-shrink-0" />
+                <div className="mb-3">
                   <h3 className="text-sm font-medium text-[#1a1a1a] group-hover:text-[#c45c3e] transition-colors duration-200" style={{ fontFamily: "var(--font-sans)" }}>
                     {item.label}
                   </h3>

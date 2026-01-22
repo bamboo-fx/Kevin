@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Instagram, Linkedin, Github, Mail, Youtube, BookOpen, Code } from "lucide-react";
+import { Instagram, Linkedin, Github, Mail, Youtube } from "lucide-react";
 
 const socials = [
   {
@@ -52,12 +52,10 @@ const sections = [
   {
     label: "Tinkering",
     href: "/tinkering",
-    icon: Code,
   },
   {
     label: "Books",
     href: "/books",
-    icon: BookOpen,
   }
 ];
 
@@ -93,23 +91,19 @@ export function Header() {
         {/* Section Tabs - Left */}
         <nav className="flex items-center gap-2">
           {sections.map((section) => {
-            const Icon = section.icon;
             const isActive = pathname === section.href;
             
             return (
               <Link
                 key={section.label}
                 href={section.href}
-                className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ease-out border border-[#e5e2db] bg-white ${
+                className={`group flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ease-out border border-[#e5e2db] bg-white ${
                   isActive
                     ? 'bg-[#c45c3e]/10 text-[#c45c3e] border-[#c45c3e]/30'
                     : 'text-[#6b6b6b] hover:text-[#1a1a1a] hover:bg-white hover:border-[#c45c3e]/20'
                 }`}
                 style={{ fontFamily: "var(--font-sans)" }}
               >
-                <Icon className={`w-3.5 h-3.5 transition-colors duration-200 ${
-                  isActive ? 'text-[#c45c3e]' : 'text-[#6b6b6b] group-hover:text-[#1a1a1a]'
-                }`} />
                 <span>{section.label}</span>
               </Link>
             );
