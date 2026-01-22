@@ -14,6 +14,48 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Academic Papers Reader",
+    description: "An app for reading academic papers and staying up to date with latest trends in AI.",
+    tags: ["YouTube", "AI", "Research"],
+    date: "Jan 2026",
+    link: "/tinkering/academic-papers-reader"
+  },
+  {
+    title: "Hater Rolodex",
+    description: "Track when others hate, light hearted external motivation.",
+    tags: ["YouTube", "Productivity", "Motivation"],
+    date: "Jan 2026",
+    link: "/tinkering/hater-rolodex"
+  },
+  {
+    title: "Technical Interview Prep for Investment Banking",
+    description: "Prepare for technical interviews in investment banking with this comprehensive practice tool.",
+    tags: ["YouTube", "Interview Prep", "Investment Banking"],
+    date: "Jan 2026",
+    link: "/tinkering/ib-interview-prep"
+  },
+  {
+    title: "Book Finder App",
+    description: "Discover and find books with this interactive book finder application.",
+    tags: ["YouTube", "Books", "Search"],
+    date: "Jan 2026",
+    link: "/tinkering/book-finder"
+  },
+  {
+    title: "Twitter Meme Generator",
+    description: "Search trending tweets and create your own memes with this interactive Twitter meme generator tool.",
+    tags: ["YouTube", "Twitter", "Meme Generator"],
+    date: "Jan 2026",
+    link: "/tinkering/twitter-meme-generator"
+  },
+  {
+    title: "Daily Mandarin Practice",
+    description: "A daily practice tool for learning Mandarin Chinese through interactive exercises and visual learning.",
+    tags: ["YouTube", "Language Learning", "Mandarin"],
+    date: "Jan 2026",
+    link: "/tinkering/daily-mandarin-practice"
+  },
+  {
     title: "Math Puzzles",
     description: "Interactive collection of mathematical puzzles from 'Mathematics for Human Flourishing'. Features 7 games including Sudoku variants, geometry challenges, and logic puzzles with beautiful animations.",
     tags: ["Next.js", "React", "Framer Motion", "TypeScript"],
