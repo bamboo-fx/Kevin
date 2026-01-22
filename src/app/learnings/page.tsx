@@ -36,7 +36,7 @@ const studyCategories = [
       "Psychology",
       "Principles of Economic Analysis",
       "Enterprise and Entrepreneurship",
-      "English with an Accent"
+      "Critical Inquiry"
     ]
   }
 ];

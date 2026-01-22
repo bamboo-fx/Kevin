@@ -14,13 +14,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Neural Goal Graph",
-    description: "A fluid, futuristic directed goal mapping tool with an infinite canvas. Create, connect, and visualize your goals in an interactive graph.",
-    tags: ["React", "TypeScript", "Canvas", "Interactive"],
-    date: "Jan 2026",
-    link: "/tinkering/neural-goal-graph"
-  },
-  {
     title: "Math Puzzles",
     description: "Interactive collection of mathematical puzzles from 'Mathematics for Human Flourishing'. Features 7 games including Sudoku variants, geometry challenges, and logic puzzles with beautiful animations.",
     tags: ["Next.js", "React", "Framer Motion", "TypeScript"],
