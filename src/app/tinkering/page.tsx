@@ -38,11 +38,11 @@ export default function TinkeringPage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-      <main className="relative z-10 w-full max-w-4xl mx-auto px-6 py-16">
-        <div>
+      <main className="relative z-10 w-full max-w-4xl mx-auto px-6 pt-6 pb-16">
+        <div className="sticky top-6 z-20 mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 mb-12 group"
+            className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 group bg-[#faf9f7]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e5e2db]"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />

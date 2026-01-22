@@ -30,7 +30,7 @@ const bioItems = [
 
 export function Bio() {
   return (
-    <section className="w-full max-w-2xl mx-auto px-6 py-4">
+    <section className="w-full max-w-2xl mx-auto px-6 pt-0 pb-4">
       <div className="space-y-4">
         {bioItems.map((item, index) => (
           <div

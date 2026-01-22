@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, BookOpen, FlaskConical } from "lucide-react";
+import { ArrowLeft, BookOpen, FlaskConical, GraduationCap } from "lucide-react";
 
 const studyCategories = [
   {
@@ -48,6 +48,21 @@ const labs = [
   "Chemistry"
 ];
 
+const selfStudies = [
+  {
+    title: "Stanford CS146S",
+    url: "https://themodernsoftware.dev/"
+  },
+  {
+    title: "MIT 15.482x",
+    url: "https://openlearninglibrary.mit.edu/courses/course-v1:MITx+15.482x+1T2019/about"
+  },
+  {
+    title: "MIT 6.S191",
+    url: "https://introtodeeplearning.com/"
+  }
+];
+
 export default function HarveyMuddPage() {
   return (
     <div className="min-h-screen bg-[#faf9f7] relative overflow-hidden">
@@ -56,11 +71,11 @@ export default function HarveyMuddPage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-      <main className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16">
-        <div>
+      <main className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-6 pb-16">
+        <div className="sticky top-6 z-20 mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 mb-12 group"
+            className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 group bg-[#faf9f7]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e5e2db]"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
@@ -68,18 +83,9 @@ export default function HarveyMuddPage() {
           </Link>
         </div>
 
-        <div className="mb-16">
-          <h1 
-            className="text-5xl font-light text-[#1a1a1a] mb-2" 
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Harvey Mudd College
-          </h1>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4">
               <BookOpen className="w-6 h-6 text-[#c45c3e]" />
               <h2 
                 className="text-3xl font-light text-[#1a1a1a]" 
@@ -88,7 +94,7 @@ export default function HarveyMuddPage() {
                 Studies
               </h2>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-6">
               {studyCategories.map((category, categoryIdx) => (
                 <div key={categoryIdx}>
                   <h3 
@@ -113,26 +119,54 @@ export default function HarveyMuddPage() {
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <FlaskConical className="w-6 h-6 text-[#4a7c59]" />
-              <h2 
-                className="text-3xl font-light text-[#1a1a1a]" 
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                Labs
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {labs.map((lab, idx) => (
-                <div
-                  key={idx}
-                  className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#4a7c59] hover:text-[#4a7c59] transition-all duration-300 cursor-default"
-                  style={{ fontFamily: "var(--font-sans)" }}
+          <div className="space-y-8">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <FlaskConical className="w-6 h-6 text-[#4a7c59]" />
+                <h2 
+                  className="text-3xl font-light text-[#1a1a1a]" 
+                  style={{ fontFamily: "var(--font-serif)" }}
                 >
-                  {lab}
-                </div>
-              ))}
+                  Labs
+                </h2>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {labs.map((lab, idx) => (
+                  <div
+                    key={idx}
+                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#4a7c59] hover:text-[#4a7c59] transition-all duration-300 cursor-default"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {lab}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <GraduationCap className="w-6 h-6 text-[#1a1a1a]" />
+                <h2 
+                  className="text-3xl font-light text-[#1a1a1a]" 
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  Self Studies
+                </h2>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {selfStudies.map((study, idx) => (
+                  <a
+                    key={idx}
+                    href={study.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {study.title}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

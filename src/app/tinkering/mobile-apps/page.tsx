@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, X, Play } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
 interface VideoProject {
@@ -63,11 +63,11 @@ export default function MobileAppsPage() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-        <main className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16">
-          <div className="mb-8">
+        <main className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-6 pb-16">
+          <div className="sticky top-6 z-20 mb-8">
             <Link
               href="/tinkering"
-              className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 group bg-[#faf9f7]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e5e2db]"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
@@ -83,7 +83,7 @@ export default function MobileAppsPage() {
               Mobile Apps
             </h1>
             <p 
-              className="text-lg text-[#6b6b6b] leading-relaxed mb-6"
+              className="text-lg text-[#6b6b6b] leading-relaxed mb-2"
               style={{ fontFamily: "var(--font-sans)" }}
             >
               A collection of mobile applications built with React Native and Expo on{" "}
@@ -95,6 +95,12 @@ export default function MobileAppsPage() {
               >
                 @vibecodeapp
               </a>
+            </p>
+            <p 
+              className="text-sm text-[#6b6b6b] leading-relaxed mb-6"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Feel free to reach out if you want to try a specific app!
             </p>
             <div className="flex flex-wrap gap-2">
               {["Expo SDK 53", "React Native 0.76.7", "TypeScript", "Nativewind", "Zustand", "React Navigation", "React Native Reanimated", "OpenAI", "Anthropic", "Grok", "Bun"].map((tag) => (
@@ -114,10 +120,13 @@ export default function MobileAppsPage() {
               <div
                 key={project.videoId}
                 onClick={() => handleVideoClick(project.videoId)}
-                className="bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                className="bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 cursor-pointer group relative"
               >
+                <div className="absolute top-4 right-4 w-10 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center group-hover:bg-[#c45c3e] transition-colors shadow-lg">
+                  <Play className="w-5 h-5 text-white ml-0.5" fill="currentColor" />
+                </div>
                 <h3 
-                  className="text-lg font-medium text-[#1a1a1a] mb-2" 
+                  className="text-lg font-medium text-[#1a1a1a] mb-2 pr-12" 
                   style={{ fontFamily: "var(--font-serif)" }}
                 >
                   {project.title}
