@@ -14,46 +14,11 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Academic Papers Reader",
-    description: "An app for reading academic papers and staying up to date with latest trends in AI.",
-    tags: ["YouTube", "AI", "Research"],
+    title: "Mobile Apps",
+    description: "A collection of mobile applications built with React Native and Expo, including tools for reading academic papers, tracking motivation, interview prep, book finding, meme generation, and language learning.",
+    tags: ["Expo SDK 53", "React Native", "TypeScript", "Nativewind", "Zustand", "React Navigation", "OpenAI", "Anthropic", "Grok"],
     date: "Jan 2026",
-    link: "/tinkering/academic-papers-reader"
-  },
-  {
-    title: "Hater Rolodex",
-    description: "Track when others hate, light hearted external motivation.",
-    tags: ["YouTube", "Productivity", "Motivation"],
-    date: "Jan 2026",
-    link: "/tinkering/hater-rolodex"
-  },
-  {
-    title: "Technical Interview Prep for Investment Banking",
-    description: "Prepare for technical interviews in investment banking with this comprehensive practice tool.",
-    tags: ["YouTube", "Interview Prep", "Investment Banking"],
-    date: "Jan 2026",
-    link: "/tinkering/ib-interview-prep"
-  },
-  {
-    title: "Book Finder App",
-    description: "Discover and find books with this interactive book finder application.",
-    tags: ["YouTube", "Books", "Search"],
-    date: "Jan 2026",
-    link: "/tinkering/book-finder"
-  },
-  {
-    title: "Twitter Meme Generator",
-    description: "Search trending tweets and create your own memes with this interactive Twitter meme generator tool.",
-    tags: ["YouTube", "Twitter", "Meme Generator"],
-    date: "Jan 2026",
-    link: "/tinkering/twitter-meme-generator"
-  },
-  {
-    title: "Daily Mandarin Practice",
-    description: "A daily practice tool for learning Mandarin Chinese through interactive exercises and visual learning.",
-    tags: ["YouTube", "Language Learning", "Mandarin"],
-    date: "Jan 2026",
-    link: "/tinkering/daily-mandarin-practice"
+    link: "/tinkering/mobile-apps"
   },
   {
     title: "Math Puzzles",
