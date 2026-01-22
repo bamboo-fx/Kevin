@@ -29,6 +29,21 @@ const projects: Project[] = [
   }
 ];
 
+const aiTools = [
+  "Cursor",
+  "Copilot",
+  "Claude Code",
+  "Letta Code",
+  "Antigravity",
+  "Google AI Studio",
+  "VibeCode",
+  "Orchids",
+  "v0",
+  "Figma",
+  "Replit",
+  "Lovable"
+];
+
 export default function TinkeringPage() {
   return (
     <PageTransition>
@@ -38,7 +53,7 @@ export default function TinkeringPage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-      <main className="relative z-10 w-full max-w-4xl mx-auto px-6 pt-6 pb-16">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-6 pb-16">
         <div className="sticky top-6 z-20 mb-8">
           <Link
             href="/"
@@ -65,7 +80,8 @@ export default function TinkeringPage() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-3 space-y-6">
           {projects.map((project, idx) => {
             const commonProps = {
               className: `block bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 ease-out group ${project.link ? 'cursor-pointer' : ''}`,
@@ -158,6 +174,30 @@ export default function TinkeringPage() {
               </div>
             );
           })}
+          </div>
+
+          <div className="lg:col-span-1">
+            <div className="sticky top-24">
+              <h3 
+                className="text-base font-medium text-[#1a1a1a] mb-3 underline"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                AI tools I've tried
+              </h3>
+              <ul className="space-y-2">
+                {aiTools.map((tool, idx) => (
+                  <li
+                    key={idx}
+                    className="text-sm text-[#4a4a4a] flex items-start"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    <span className="mr-2 text-[#c45c3e]">•</span>
+                    <span>{tool}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
     </div>
