@@ -29,21 +29,6 @@ const projects: Project[] = [
   }
 ];
 
-const aiTools = [
-  "Cursor",
-  "Copilot",
-  "Claude Code",
-  "Letta Code",
-  "Antigravity",
-  "Google AI Studio",
-  "VibeCode",
-  "Orchids",
-  "v0",
-  "Figma",
-  "Replit",
-  "Lovable"
-];
-
 export default function TinkeringPage() {
   return (
     <PageTransition>
@@ -80,8 +65,7 @@ export default function TinkeringPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-3 space-y-6">
+        <div className="space-y-6">
           {projects.map((project, idx) => {
             const commonProps = {
               className: `block bg-white/50 border border-[#e5e5e5] rounded-lg p-6 hover:border-[#c45c3e]/30 hover:shadow-lg transition-all duration-300 ease-out group ${project.link ? 'cursor-pointer' : ''}`,
@@ -174,30 +158,6 @@ export default function TinkeringPage() {
               </div>
             );
           })}
-          </div>
-
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <h3 
-                className="text-base font-medium text-[#1a1a1a] mb-3 underline"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                AI tools I've tried
-              </h3>
-              <ul className="space-y-2">
-                {aiTools.map((tool, idx) => (
-                  <li
-                    key={idx}
-                    className="text-sm text-[#4a4a4a] flex items-start"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    <span className="mr-2 text-[#c45c3e]">•</span>
-                    <span>{tool}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
         </div>
       </main>
     </div>
