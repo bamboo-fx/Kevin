@@ -5,47 +5,48 @@ import { ArrowLeft } from "lucide-react";
 
 const studyCategories = [
   {
-    title: "CS/Math",
+    title: "CS/Math and Bio",
     courses: [
-      "Data Structures and Program Development",
-      "Computer Systems",
-      "Discrete Mathematics",
-      "Linear Algebra",
-      "Multivariable Calculus",
-      "Principles of Computer Science",
-      "Probability and Statistics",
-      "Mathematical Biology",
-      "Computational Biology"
+      { code: "CSCI070", name: "Data Structures and Program Development" },
+      { code: "CSCI105", name: "Computer Systems" },
+      { code: "CSCI060", name: "Principles of Computer Science" },
+      { code: "MATH055", name: "Discrete Mathematics" },
+      { code: "MATH073", name: "Linear Algebra" },
+      { code: "MATH019", name: "Multivariable Calculus" },
+      { code: "MATH062", name: "Probability and Statistics" },
+      { code: "MCBI118A", name: "Mathematical Biology" },
+      { code: "MCBI118B", name: "Computational Biology" },
+      { code: "BIOL046", name: "Biology" },
+      { code: "BIOL101", name: "Comparative Physiology" }
     ]
   },
   {
     title: "Core Curriculum",
     courses: [
-      "Engineering Systems",
-      "Physics Mechanics and Wave Motion",
-      "Special Relativity",
-      "Chemistry",
-      "Biology",
-      "STEM & Social Impact",
-      "Academic Writing"
+      { code: "ENGR079", name: "Engineering Systems" },
+      { code: "PHYS024", name: "Physics Mechanics and Wave Motion" },
+      { code: "PHYS023", name: "Special Relativity" },
+      { code: "CHEM042", name: "Chemistry" },
+      { code: "CORE099", name: "STEM & Social Impact" },
+      { code: "WRIT001", name: "Academic Writing" }
     ]
   },
   {
     title: "Humanities, Social Sciences & Arts",
     courses: [
-      "Psychology",
-      "Principles of Economic Analysis",
-      "Enterprise and Entrepreneurship",
-      "Critical Inquiry"
+      { code: "PSYC052", name: "Psychology" },
+      { code: "ECON050", name: "Principles of Economic Analysis" },
+      { code: "ENTR179", name: "Enterprise and Entrepreneurship" },
+      { code: "HSA 010", name: "Critical Inquiry" }
     ]
   }
 ];
 
 const labs = [
-  "Engineering Systems",
-  "Physics",
-  "Biology",
-  "Chemistry"
+  { code: "ENGR079P", name: "Engineering Practicum" },
+  { code: "PHYS050", name: "Physics Laboratory" },
+  { code: "BIOL023", name: "Biology Laboratory" },
+  { code: "CHEM024", name: "Chemistry Laboratory" }
 ];
 
 const selfStudies = [
@@ -71,8 +72,8 @@ export default function HarveyMuddPage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#4a7c59]/[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c45c3e]/[0.03] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-      <main className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-6 pb-16">
-        <div className="sticky top-6 z-20 mb-8">
+      <main className="relative z-10 w-full max-w-6xl mx-auto px-6 pt-6 pb-12">
+        <div className="sticky top-6 z-20 mb-6">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-[#6b6b6b] hover:text-[#c45c3e] transition-colors duration-300 group bg-[#faf9f7]/80 backdrop-blur-sm px-4 py-2 rounded-full border border-[#e5e2db]"
@@ -83,73 +84,91 @@ export default function HarveyMuddPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <div className="mb-4">
-              <h2 
-                className="text-3xl font-light text-[#1a1a1a]" 
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                Studies
-              </h2>
-            </div>
-            <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-5">
+            <h2 
+              className="text-2xl font-light text-[#1a1a1a] mb-4" 
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Studies
+            </h2>
+            <div className="space-y-4">
               {studyCategories.map((category, categoryIdx) => (
                 <div key={categoryIdx}>
                   <h3 
-                    className="text-lg font-medium text-[#1a1a1a] mb-3"
+                    className="text-base font-medium text-[#1a1a1a] mb-3"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {category.title}
                   </h3>
-                  <div className="flex flex-wrap gap-3">
-                    {category.courses.map((course, idx) => (
-                      <div
-                        key={idx}
-                        className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#c45c3e] hover:text-[#c45c3e] transition-all duration-300 cursor-default"
-                        style={{ fontFamily: "var(--font-sans)" }}
-                      >
-                        {course}
-                      </div>
-                    ))}
+                  <div className="bg-white/50 border border-[#e5e2db] rounded-lg p-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2.5">
+                      {category.courses.map((course, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-baseline gap-3 group"
+                        >
+                          <span 
+                            className="text-xs font-mono text-[#6b6b6b] group-hover:text-[#c45c3e] transition-colors flex-shrink-0 w-22"
+                            style={{ fontFamily: "monospace" }}
+                          >
+                            {course.code}
+                          </span>
+                          <span 
+                            className="text-xs text-[#4a4a4a] group-hover:text-[#1a1a1a] transition-colors leading-relaxed"
+                            style={{ fontFamily: "var(--font-sans)" }}
+                          >
+                            {course.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
-              <div className="mb-4">
-                <h2 
-                  className="text-3xl font-light text-[#1a1a1a]" 
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  Labs
-                </h2>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {labs.map((lab, idx) => (
-                  <div
-                    key={idx}
-                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#4a7c59] hover:text-[#4a7c59] transition-all duration-300 cursor-default"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {lab}
-                  </div>
-                ))}
+              <h2 
+                className="text-2xl font-light text-[#1a1a1a] mb-4" 
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                Labs
+              </h2>
+              <div className="bg-white/50 border border-[#e5e2db] rounded-lg p-5">
+                <div className="space-y-2.5">
+                  {labs.map((lab, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-baseline gap-3 group"
+                    >
+                      <span 
+                        className="text-xs font-mono text-[#6b6b6b] group-hover:text-[#4a7c59] transition-colors flex-shrink-0 w-22"
+                        style={{ fontFamily: "monospace" }}
+                      >
+                        {lab.code}
+                      </span>
+                      <span 
+                        className="text-xs text-[#4a4a4a] group-hover:text-[#1a1a1a] transition-colors leading-relaxed"
+                        style={{ fontFamily: "var(--font-sans)" }}
+                      >
+                        {lab.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
             <div>
-              <div className="mb-4">
-                <h2 
-                  className="text-3xl font-light text-[#1a1a1a]" 
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  Self Studies
-                </h2>
-              </div>
+              <h2 
+                className="text-2xl font-light text-[#1a1a1a] mb-4" 
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                Self Studies
+              </h2>
               <div className="flex flex-wrap gap-3">
                 {selfStudies.map((study, idx) => (
                   <a
@@ -157,7 +176,7 @@ export default function HarveyMuddPage() {
                     href={study.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-sm text-[#4a4a4a] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer"
+                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-xs text-[#4a4a4a] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer"
                     style={{ fontFamily: "var(--font-sans)" }}
                   >
                     {study.title}
