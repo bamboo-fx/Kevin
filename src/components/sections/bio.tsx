@@ -75,6 +75,11 @@ export function Bio() {
             </p>
           </div>
         ))}
+        <div className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out">
+          <p className="text-[17px] leading-relaxed text-[#6b6b6b]" style={{ fontFamily: "var(--font-sans)" }}>
+            Feel free to reach out at kexia [at] g [dot] hmc [dot] edu
+          </p>
+        </div>
       </div>
     </section>
   );

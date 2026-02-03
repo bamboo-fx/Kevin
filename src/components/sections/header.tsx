@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Instagram, Linkedin, Github, Mail, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Github, Youtube } from "lucide-react";
 
 const socials = [
   {
@@ -39,12 +39,6 @@ const socials = [
       </svg>
     ),
     hoverColor: "#000000"
-  },
-  {
-    label: "Email",
-    href: "mailto:kevinxia2024@gmail.com",
-    icon: Mail,
-    hoverColor: "#c45c3e"
   }
 ];
 
