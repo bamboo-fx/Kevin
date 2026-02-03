@@ -117,9 +117,5 @@ function EmailCopy() {
     </div>
   );
 }
-      </div>
-    </section>
-  );
-}
 
 export default Bio;
