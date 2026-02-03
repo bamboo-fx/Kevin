@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 const bioItems = [
   {
     text: "Previously vibecoding apps at",
@@ -75,11 +77,46 @@ export function Bio() {
             </p>
           </div>
         ))}
-        <div className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out">
-          <p className="text-[17px] leading-relaxed text-[#6b6b6b]" style={{ fontFamily: "var(--font-sans)" }}>
-            Feel free to reach out at kexia [at] g [dot] hmc [dot] edu
-          </p>
-        </div>
+        <EmailCopy />
+      </div>
+    </section>
+  );
+}
+
+function EmailCopy() {
+  const [copied, setCopied] = useState(false);
+  const email = "kexia@g.hmc.edu";
+  const displayText = "Feel free to reach out at kexia [at] g (dot) hmc (dot) edu";
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
+  return (
+    <div 
+      className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out cursor-pointer"
+      onClick={handleCopy}
+      title={copied ? "Copied!" : "Click to copy email"}
+    >
+      <p 
+        className={`text-[17px] leading-relaxed transition-colors duration-300 ${
+          copied 
+            ? "text-[#c45c3e]" 
+            : "text-[#6b6b6b] group-hover:text-[#1a1a1a]"
+        }`} 
+        style={{ fontFamily: "var(--font-sans)" }}
+      >
+        {copied ? "Email copied to clipboard!" : displayText}
+      </p>
+    </div>
+  );
+}
       </div>
     </section>
   );
