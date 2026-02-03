@@ -6,6 +6,11 @@ import { PageTransition } from "@/components/page-transition";
 
 const books = [
   {
+    title: "Hands-On Machine Learning with Scikit-Learn and TensorFlow",
+    author: "Aurélien Géron",
+    dateRead: "Jan 2026"
+  },
+  {
     title: "Mathematics for Human Flourishing",
     author: "Francis Su",
     dateRead: "Dec 2025"
@@ -55,14 +60,14 @@ export default function BooksPage() {
 
           <div className="mb-10">
             <h1 
-              className="text-5xl font-light text-[#1a1a1a] mb-4" 
-              style={{ fontFamily: "var(--font-serif)" }}
+              className="text-5xl font-light text-[#1a1a1a] mb-4 not-italic" 
+              style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 300 }}
             >
               Books
             </h1>
             <p 
-              className="text-lg text-[#6b6b6b] leading-relaxed"
-              style={{ fontFamily: "var(--font-sans)" }}
+              className="text-lg text-[#6b6b6b] leading-relaxed not-italic"
+              style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
             >
               Actively trying to read more, send me any recommendations!
             </p>
@@ -75,20 +80,20 @@ export default function BooksPage() {
                 <div className="flex-1">
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <h2 
-                      className="text-lg font-medium text-[#1a1a1a]" 
-                      style={{ fontFamily: "var(--font-serif)" }}
+                      className="text-lg font-medium text-[#1a1a1a] not-italic" 
+                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 500 }}
                     >
                       {book.title}
                     </h2>
                     <span 
-                      className="text-[#6b6b6b] text-sm"
-                      style={{ fontFamily: "var(--font-sans)" }}
+                      className="text-[#6b6b6b] text-sm not-italic"
+                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
                     >
                       {book.author}
                     </span>
                     <span 
-                      className="text-[#9a9a9a] text-xs"
-                      style={{ fontFamily: "var(--font-sans)" }}
+                      className="text-[#9a9a9a] text-xs not-italic"
+                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
                     >
                       {book.dateRead}
                     </span>
