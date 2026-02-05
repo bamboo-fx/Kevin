@@ -10,9 +10,29 @@ interface Project {
   tags: string[];
   date: string;
   link?: string;
+  external?: boolean;
+  linkName?: string;
 }
 
 const projects: Project[] = [
+  {
+    title: "CoachBooks",
+    description: "D3 Athletics Expense Tracker - A comprehensive platform for managing athletic expenses and budgets for Division III athletics programs.",
+    tags: ["Next.js", "React", "TypeScript"],
+    date: "Jan 2026",
+    link: "https://playbook.vibecode.run/landing",
+    external: true,
+    linkName: "coachbooks.us"
+  },
+  {
+    title: "MatchMyTrial",
+    description: "Smart matching for relevant clinical trials - An intelligent platform that connects patients with relevant clinical trial opportunities.",
+    tags: ["Next.js", "React", "TypeScript"],
+    date: "Jan 2026",
+    link: "https://matchtrial.vibecode.run/",
+    external: true,
+    linkName: "matchmytrial.xyz"
+  },
   {
     title: "Mobile Apps",
     description: "A collection of mobile applications built with React Native and Expo, including tools for reading academic papers, tracking motivation, interview prep, book finding, meme generation, and language learning.",
@@ -75,49 +95,106 @@ export default function TinkeringPage() {
             };
             
             return project.link ? (
-              <Link
-                key={idx}                {...commonProps}
-                href={project.link}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <h2 
-                      className="text-xl font-medium text-[#1a1a1a]" 
-                      style={{ fontFamily: "var(--font-serif)" }}
-                    >
-                      {project.title}
-                    </h2>
-                    {project.link && (
-                      <ExternalLink className="w-4 h-4 text-[#9a9a9a] group-hover:text-[#c45c3e] transition-colors" />
-                    )}
-                  </div>
-                  <span 
-                    className="text-xs text-[#9a9a9a] tracking-wide"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {project.date}
-                  </span>
-                </div>
-                
-                <p 
-                  className="text-[#6b6b6b] leading-relaxed mb-4"
-                  style={{ fontFamily: "var(--font-sans)" }}
+              project.external ? (
+                <a
+                  key={idx}
+                  {...commonProps}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIdx) => (
-                    <span
-                      key={tagIdx}
-                      className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <h2 
+                        className="text-xl font-medium text-[#1a1a1a]" 
+                        style={{ fontFamily: "var(--font-serif)" }}
+                      >
+                        {project.title}
+                      </h2>
+                      <ExternalLink className="w-4 h-4 text-[#9a9a9a] group-hover:text-[#c45c3e] transition-colors" />
+                    </div>
+                    <span 
+                      className="text-xs text-[#9a9a9a] tracking-wide"
                       style={{ fontFamily: "var(--font-sans)" }}
                     >
-                      {tag}
+                      {project.date}
                     </span>
-                  ))}
-                </div>
-              </Link>
+                  </div>
+                  
+                  <p 
+                    className="text-[#6b6b6b] leading-relaxed mb-4"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {project.description}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-4">
+                    <span 
+                      className="text-sm text-[#9a9a9a]"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {project.linkName}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIdx) => (
+                      <span
+                        key={tagIdx}
+                        className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                        style={{ fontFamily: "var(--font-sans)" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              ) : (
+                <Link
+                  key={idx}
+                  {...commonProps}
+                  href={project.link}
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <h2 
+                        className="text-xl font-medium text-[#1a1a1a]" 
+                        style={{ fontFamily: "var(--font-serif)" }}
+                      >
+                        {project.title}
+                      </h2>
+                      {project.link && (
+                        <ExternalLink className="w-4 h-4 text-[#9a9a9a] group-hover:text-[#c45c3e] transition-colors" />
+                      )}
+                    </div>
+                    <span 
+                      className="text-xs text-[#9a9a9a] tracking-wide"
+                      style={{ fontFamily: "var(--font-sans)" }}
+                    >
+                      {project.date}
+                    </span>
+                  </div>
+                  
+                  <p 
+                    className="text-[#6b6b6b] leading-relaxed mb-4"
+                    style={{ fontFamily: "var(--font-sans)" }}
+                  >
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, tagIdx) => (
+                      <span
+                        key={tagIdx}
+                        className="px-3 py-1 bg-[#f0eeea] text-[#4a4a4a] text-xs rounded-full border border-[#e5e5e5]"
+                        style={{ fontFamily: "var(--font-sans)" }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              )
             ) : (
               <div key={idx} {...commonProps}>
                 <div className="flex items-start justify-between mb-3">
