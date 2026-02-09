@@ -86,7 +86,6 @@ export function Bio() {
 function EmailCopy() {
   const [copied, setCopied] = useState(false);
   const email = "kexia@g.hmc.edu";
-  const displayText = "Feel free to reach out at kexia [at] g (dot) hmc (dot) edu";
 
   const handleCopy = async () => {
     try {
@@ -102,17 +101,22 @@ function EmailCopy() {
     <div 
       className="group relative pl-4 border-l-2 border-[#e5e2db] hover:border-[#c45c3e]/50 transition-all duration-300 ease-out cursor-pointer"
       onClick={handleCopy}
-      title={copied ? "Copied!" : "Click to copy email"}
     >
       <p 
-        className={`text-[17px] leading-relaxed transition-colors duration-300 ${
+        className={`text-[17px] leading-relaxed transition-colors duration-300 relative ${
           copied 
             ? "text-[#c45c3e]" 
             : "text-[#6b6b6b] group-hover:text-[#1a1a1a]"
         }`} 
         style={{ fontFamily: "var(--font-sans)" }}
+        title="Click to copy"
       >
-        {copied ? "Email copied to clipboard!" : displayText}
+        Email: <span className="text-[#1a1a1a] font-medium link-underline hover:text-[#c45c3e] transition-colors duration-300">{email}</span>
+        {copied && (
+          <span className="ml-2 text-xs text-[#c45c3e] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            ✓ Copied
+          </span>
+        )}
       </p>
     </div>
   );
