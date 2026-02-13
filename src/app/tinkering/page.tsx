@@ -34,9 +34,8 @@ const projects: Project[] = [
     description: "D3 Athletics Expense Tracker - A comprehensive platform for managing athletic expenses and budgets for Division III athletics programs.",
     tags: ["Next.js", "React", "TypeScript"],
     date: "Feb 2026",
-    link: "https://playbook.vibecode.run/landing",
-    external: true,
-    linkName: "coachbooks.us"
+    link: "https://coachbooks.us",
+    external: true
   },
   {
     title: "MatchMyTrial",
