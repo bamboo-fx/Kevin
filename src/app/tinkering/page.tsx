@@ -24,8 +24,6 @@ const projects: Project[] = [
     description: "Better Jupyter Notebook with Pyodide and PyAssembly runtime in the web. AI agents for data visualization and feature modeling, automatic machine learning model recommendations. Built at YC Better Hacks Hackathon",
     tags: ["React", "TypeScript", "Pyodide", "AI", "Machine Learning"],
     date: "Feb 2026",
-    link: "https://qdgeunmohdit.dev.vibecode.run/",
-    external: true,
     githubLink: "https://github.com/bamboo-fx/loopyter",
     youtubeLink: "https://www.youtube.com/watch?v=ZcCpBsnSVRc"
   },
@@ -42,9 +40,6 @@ const projects: Project[] = [
     description: "Smart matching for relevant clinical trials - An intelligent platform that connects patients with relevant clinical trial opportunities. Built at YC Hack the Stackathon",
     tags: ["Next.js", "React", "TypeScript"],
     date: "Jan 2026",
-    link: "https://matchtrial.vibecode.run/",
-    external: true,
-    linkName: "matchmytrial.xyz",
     githubLink: "https://github.com/bamboo-fx/fam"
   },
   {
