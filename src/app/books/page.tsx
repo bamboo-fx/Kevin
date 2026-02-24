@@ -4,39 +4,6 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { PageTransition } from "@/components/page-transition";
 
-const books = [
-  {
-    title: "Hands-On Machine Learning with Scikit-Learn and TensorFlow",
-    author: "Aurélien Géron",
-    dateRead: "Jan 2026"
-  },
-  {
-    title: "Mathematics for Human Flourishing",
-    author: "Francis Su",
-    dateRead: "Dec 2025"
-  },
-  {
-    title: "100M Money Models",
-    author: "Alex Hormozi",
-    dateRead: "Dec 2025"
-  },
-  {
-    title: "The Promise of Bitcoin",
-    author: "Bobby C. Lee",
-    dateRead: "Dec 2025"
-  },
-  {
-    title: "The Third Door",
-    author: "Alex Banayan",
-    dateRead: "Dec 2025"
-  },
-  {
-    title: "AI Engineering",
-    author: "Chip Huyen",
-    dateRead: "Dec 2025"
-  }
-];
-
 export default function BooksPage() {
   return (
     <PageTransition>
@@ -69,39 +36,9 @@ export default function BooksPage() {
               className="text-lg text-[#6b6b6b] leading-relaxed not-italic"
               style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
             >
-              Actively trying to read more, send me any recommendations!
+              Coming soon
             </p>
           </div>
-
-          <ul className="space-y-3">
-            {books.map((book, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <span className="text-[#c45c3e] mt-1">•</span>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-3 flex-wrap">
-                    <h2 
-                      className="text-lg font-medium text-[#1a1a1a] not-italic" 
-                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 500 }}
-                    >
-                      {book.title}
-                    </h2>
-                    <span 
-                      className="text-[#6b6b6b] text-sm not-italic"
-                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
-                    >
-                      {book.author}
-                    </span>
-                    <span 
-                      className="text-[#9a9a9a] text-xs not-italic"
-                      style={{ fontFamily: "var(--font-sans)", fontStyle: "normal", fontWeight: 400 }}
-                    >
-                      {book.dateRead}
-                    </span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
         </main>
       </div>
     </PageTransition>
