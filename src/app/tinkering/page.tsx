@@ -42,20 +42,6 @@ const projects: Project[] = [
     date: "Jan 2026",
     githubLink: "https://github.com/bamboo-fx/fam"
   },
-  {
-    title: "Mobile Apps",
-    description: "A collection of mobile applications built with React Native and Expo, including tools for reading academic papers, tracking motivation, interview prep, book finding, meme generation, and language learning.",
-    tags: ["Expo SDK 53", "React Native", "TypeScript", "Nativewind", "Zustand", "React Navigation", "OpenAI", "Anthropic", "Grok"],
-    date: "Jan 2026",
-    link: "/tinkering/mobile-apps"
-  },
-  {
-    title: "Math Puzzles",
-    description: "Interactive collection of mathematical puzzles from 'Mathematics for Human Flourishing'. Features 7 games including Sudoku variants, geometry challenges, and logic puzzles with beautiful animations.",
-    tags: ["Next.js", "React", "Framer Motion", "TypeScript"],
-    date: "Dec 2025",
-    link: "/tinkering/math-puzzles"
-  }
 ];
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
