@@ -303,12 +303,6 @@ export default function TinkeringPage() {
             >
               Tinkering
             </h1>
-            <p 
-              className="text-base text-[#6b6b6b] leading-relaxed italic"
-              style={{ fontFamily: "var(--font-sans)" }}
-            >
-              Prototyping, vibecoding, exploring AI tools and building
-            </p>
           </motion.div>
 
           {/* Horizontal scrolling projects */}
