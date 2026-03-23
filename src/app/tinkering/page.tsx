@@ -20,20 +20,20 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Loopyter",
-    description: "Better Jupyter Notebook with Pyodide and PyAssembly runtime in the web. AI agents for data visualization and feature modeling, automatic machine learning model recommendations. Built at YC Better Hacks Hackathon",
-    tags: ["React", "TypeScript", "Pyodide", "AI", "Machine Learning"],
-    date: "Feb 2026",
-    githubLink: "https://github.com/bamboo-fx/loopyter",
-    youtubeLink: "https://www.youtube.com/watch?v=ZcCpBsnSVRc"
-  },
-  {
     title: "CoachBooks",
     description: "D3 Athletics Expense Tracker - A comprehensive platform for managing athletic expenses and budgets for Division III athletics programs.",
     tags: ["Next.js", "React", "TypeScript"],
     date: "Feb 2026",
     link: "https://coachbooks.us",
     external: true
+  },
+  {
+    title: "Loopyter",
+    description: "Better Jupyter Notebook with Pyodide and PyAssembly runtime in the web. AI agents for data visualization and feature modeling, automatic machine learning model recommendations. Built at YC Better Hacks Hackathon",
+    tags: ["React", "TypeScript", "Pyodide", "AI", "Machine Learning"],
+    date: "Feb 2026",
+    githubLink: "https://github.com/bamboo-fx/loopyter",
+    youtubeLink: "https://www.youtube.com/watch?v=ZcCpBsnSVRc"
   },
   {
     title: "MatchMyTrial",

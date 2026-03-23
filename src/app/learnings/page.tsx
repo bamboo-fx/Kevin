@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 
 const studyCategories = [
   {
-    title: "CS/Math and Bio",
+    title: "CS/Math",
     courses: [
       { code: "CSCI070", name: "Data Structures and Program Development" },
       { code: "CSCI105", name: "Computer Systems" },
@@ -15,9 +15,7 @@ const studyCategories = [
       { code: "MATH019", name: "Multivariable Calculus" },
       { code: "MATH062", name: "Probability and Statistics" },
       { code: "MCBI118A", name: "Mathematical Biology" },
-      { code: "MCBI118B", name: "Computational Biology" },
-      { code: "BIOL046", name: "Biology" },
-      { code: "BIOL101", name: "Comparative Physiology" }
+      { code: "MCBI118B", name: "Computational Biology" }
     ]
   },
   {
@@ -27,6 +25,7 @@ const studyCategories = [
       { code: "PHYS024", name: "Physics Mechanics and Wave Motion" },
       { code: "PHYS023", name: "Special Relativity" },
       { code: "CHEM042", name: "Chemistry" },
+      { code: "BIOL046", name: "Biology" },
       { code: "CORE099", name: "STEM & Social Impact" },
       { code: "WRIT001", name: "Academic Writing" }
     ]
@@ -49,20 +48,6 @@ const labs = [
   { code: "CHEM024", name: "Chemistry Laboratory" }
 ];
 
-const selfStudies = [
-  {
-    title: "Stanford CS146S",
-    url: "https://themodernsoftware.dev/"
-  },
-  {
-    title: "MIT 15.482x",
-    url: "https://openlearninglibrary.mit.edu/courses/course-v1:MITx+15.482x+1T2019/about"
-  },
-  {
-    title: "MIT 6.S191",
-    url: "https://introtodeeplearning.com/"
-  }
-];
 
 export default function HarveyMuddPage() {
   return (
@@ -162,28 +147,6 @@ export default function HarveyMuddPage() {
               </div>
             </div>
 
-            <div>
-              <h2 
-                className="text-2xl font-light text-[#1a1a1a] mb-4" 
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                Self Studies
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {selfStudies.map((study, idx) => (
-                  <a
-                    key={idx}
-                    href={study.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-white border-2 border-[#e5e2db] rounded-full text-xs text-[#4a4a4a] hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-all duration-300 cursor-pointer"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    {study.title}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </main>
