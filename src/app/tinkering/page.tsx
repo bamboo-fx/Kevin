@@ -20,6 +20,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Whistle",
+    description: "NCAA compliance platform with a RAG workflow, helping athletic programs stay on top of regulations and compliance requirements with an intelligent, streamlined workflow.",
+    tags: ["Next.js", "React", "TypeScript"],
+    date: "Apr 2026",
+    link: "http://whistleai.us/",
+    external: true
+  },
+  {
     title: "CoachBooks",
     description: "D3 Athletics Expense Tracker - A comprehensive platform for managing athletic expenses and budgets for Division III athletics programs.",
     tags: ["Next.js", "React", "TypeScript"],
