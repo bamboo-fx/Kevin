@@ -11,12 +11,6 @@ const interests = [
     description: "Projects & experiments",
     gradient: "from-[#8b5cf6]/10 to-[#6366f1]/10"
   },
-  {
-    label: "Books",
-    href: "/books",
-    description: "What I'm reading",
-    gradient: "from-[#4a7c59]/10 to-[#3d5a80]/10"
-  }
 ];
 
 export function Interests() {

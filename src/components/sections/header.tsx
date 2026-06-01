@@ -47,10 +47,6 @@ const sections = [
     label: "Tinkering",
     href: "/tinkering",
   },
-  {
-    label: "Books",
-    href: "/books",
-  }
 ];
 
 export function Header() {

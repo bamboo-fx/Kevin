@@ -15,11 +15,11 @@ const bioItems = [
     ]
   },
   {
-    text: "Created content and grew my",
+    text: "Created content and grew my personal brand from 0-70k in 2 months | currently creative director for",
     links: [
-      { label: "personal brand", href: "https://www.instagram.com/kev_xia/" }
+      { label: "@zeno bang", href: "https://www.instagram.com/_zeno.bang/" }
     ],
-    suffix: "from 0-70k in 2 months (retired for now)."
+    suffix: "."
   },
   {
     text: "Also touching grass at",

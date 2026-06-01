@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { BookOpen, Code } from "lucide-react";
+import { Code } from "lucide-react";
 import { useTransition } from "@/contexts/transition-context";
 
 const sections = [
@@ -12,11 +12,6 @@ const sections = [
     href: "/tinkering",
     icon: Code,
   },
-  {
-    label: "Books",
-    href: "/books",
-    icon: BookOpen,
-  }
 ];
 
 export function SectionTabs() {
