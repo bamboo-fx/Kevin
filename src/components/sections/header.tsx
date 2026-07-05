@@ -1,16 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Instagram, Linkedin, Github, Youtube } from "lucide-react";
+import { Linkedin, Github, Youtube } from "lucide-react";
 
 const socials = [
   {
-    label: "YouTube",
-    href: "https://www.youtube.com/@kevinx-io",
-    icon: Youtube,
-    hoverColor: "#FF0000"
+    label: "X",
+    href: "https://x.com/bamboo_farmer",
+    icon: () => (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    ),
+    hoverColor: "#000000"
   },
   {
     label: "LinkedIn",
@@ -25,33 +27,14 @@ const socials = [
     hoverColor: "#333"
   },
   {
-    label: "Instagram",
-    href: "https://www.instagram.com/kev_xia/",
-    icon: Instagram,
-    hoverColor: "#E4405F"
-  },
-  {
-    label: "X",
-    href: "https://x.com/bamboo_farmer",
-    icon: () => (
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    ),
-    hoverColor: "#000000"
+    label: "YouTube",
+    href: "https://www.youtube.com/@kevinx-io",
+    icon: Youtube,
+    hoverColor: "#FF0000"
   }
 ];
 
-const sections = [
-  {
-    label: "Tinkering",
-    href: "/tinkering",
-  },
-];
-
 export function Header() {
-  const pathname = usePathname();
-
   return (
     <header className="w-full max-w-2xl mx-auto flex flex-col items-center pt-12 pb-8">
       <div className="relative mb-6 group">
@@ -76,31 +59,8 @@ export function Header() {
         <div className="h-[2px] w-12 bg-gradient-to-r from-transparent via-[#c45c3e] to-transparent mx-auto mb-4" />
       </div>
       
-      {/* Section Tabs and Social Links - Same line */}
-      <div className="w-full max-w-2xl mx-auto px-6 flex items-center justify-between mt-4">
-        {/* Section Tabs - Left */}
-        <nav className="flex items-center gap-2">
-          {sections.map((section) => {
-            const isActive = pathname === section.href;
-            
-            return (
-              <Link
-                key={section.label}
-                href={section.href}
-                className={`group flex items-center px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ease-out border border-[#e5e2db] bg-white ${
-                  isActive
-                    ? 'bg-[#c45c3e]/10 text-[#c45c3e] border-[#c45c3e]/30'
-                    : 'text-[#6b6b6b] hover:text-[#1a1a1a] hover:bg-white hover:border-[#c45c3e]/20'
-                }`}
-                style={{ fontFamily: "var(--font-sans)" }}
-              >
-                <span>{section.label}</span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Social Links - Right */}
+      {/* Social Links */}
+      <div className="w-full max-w-2xl mx-auto px-6 flex items-center justify-center mt-4">
         <nav className="flex items-center gap-2">
           {socials.map((social) => {
             const Icon = social.icon;
