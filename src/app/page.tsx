@@ -2,8 +2,6 @@
 
 import { Header } from "@/components/sections/header";
 import { Intro } from "@/components/sections/intro";
-import { Bio } from "@/components/sections/bio";
-import { Footer } from "@/components/sections/footer";
 import { HomeContent } from "@/components/home-content";
 
 export default function Home() {
@@ -18,8 +16,6 @@ export default function Home() {
         <HomeContent>
           <Header />
           <Intro />
-          <Bio />
-          <Footer />
         </HomeContent>
       </main>
     </div>

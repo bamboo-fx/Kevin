@@ -1,19 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Linkedin, Github, Youtube } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 
 const socials = [
-  {
-    label: "X",
-    href: "https://x.com/bamboo_farmer",
-    icon: () => (
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    ),
-    hoverColor: "#000000"
-  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/kevin-xia22",
@@ -25,12 +15,6 @@ const socials = [
     href: "https://github.com/bamboo-fx",
     icon: Github,
     hoverColor: "#333"
-  },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/@kevinx-io",
-    icon: Youtube,
-    hoverColor: "#FF0000"
   }
 ];
 
@@ -64,7 +48,6 @@ export function Header() {
         <nav className="flex items-center gap-2">
           {socials.map((social) => {
             const Icon = social.icon;
-            const isXIcon = social.label === "X";
             return (
               <a
                 key={social.label}
@@ -89,11 +72,7 @@ export function Header() {
                     e.currentTarget.style.color = '#6b6b6b';
                   }}
                 >
-                  {isXIcon ? (
-                    <Icon />
-                  ) : (
-                    <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
-                  )}
+                  <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
                 </div>
               </a>
             );
